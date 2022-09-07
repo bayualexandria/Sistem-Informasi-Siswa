@@ -71,7 +71,9 @@
                 <!-- Start Pagination -->
                 <div class="flex flex-row items-center justify-between">
                     <div>
-                        <a href="<?= base_url(''); ?>" class="px-4 py-2 text-sm text-white rounded-full outline-none bg-lime-500" target="_blank">Data Nilai</a>
+                        <?php if ($nilaiRataRata) : ?>
+                            <a href="<?= base_url('/laporan-data-nilai-siswa/' . $nilaiRataRata['id']); ?>" class="px-4 py-2 text-sm text-white rounded-full outline-none bg-lime-500" target="_blank">Data Nilai</a>
+                        <?php endif; ?>
                     </div>
                     <div class="flex justify-end py-5">
                         <?= $pager->links('pagination', 'paginate'); ?>

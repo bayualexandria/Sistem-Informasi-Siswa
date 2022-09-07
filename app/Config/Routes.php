@@ -126,6 +126,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
     $routes->get('/laporan-data-kelas-siswa/(:any)', 'Backend\LaporanController::laporanDataKelasSiswa/$1');
     $routes->get('/laporan-data-jadwal-mapel/(:any)', 'Backend\LaporanController::laporanDataMapelKelas/$1');
+    $routes->get('/laporan-data-nilai-siswa/(:any)', 'Backend\LaporanController::laporanDataNilaiSiswa/$1');
 });
 
 // RestFull API

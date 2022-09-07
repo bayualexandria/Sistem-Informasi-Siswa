@@ -3,7 +3,7 @@
 namespace App\Controllers\Backend;
 
 use App\Controllers\BaseController;
-use App\Models\{Guru, Jurusan, Siswa, Kelas, Mapel};
+use App\Models\{Guru, Jurusan, Siswa, Kelas, Mapel, NilaiRataRata};
 use \Mpdf\Mpdf;
 
 
@@ -17,6 +17,7 @@ class LaporanController extends BaseController
         $this->guru = new Guru();
         $this->mpdf = new Mpdf();
         $this->mapel = new Mapel();
+        $this->nilaiRataRata = new NilaiRataRata();
     }
 
     public function laporanDataKelasSiswa($id)
@@ -57,5 +58,30 @@ class LaporanController extends BaseController
         $this->mpdf->setFooter('SMK XXXX XXXX - ' . $kelas['kelas'] . ' ' . $jurusan['jurusan'] . ' [{PAGENO}]');
         $this->response->setHeader('Content-Type', 'application/pdf');
         $this->mpdf->Output('arjun.pdf', 'I');
+    }
+
+    public function laporanDataNilaiSiswa($id)
+    {
+        $nilaiRataRata = $this->nilaiRataRata->where('id', $id)->asObject()->first();
+        $mapel = $this->mapel->where('id', $nilaiRataRata->id_mapel)->asObject()->first();
+        $guru = $this->guru->where('id', $mapel->guru_id)->asObject()->first();
+        $kelas = $this->kelas->where('id', $mapel->kelas_id)->asObject()->first();
+        $jurusan = $this->jurusan->where('id', $kelas->id_jurusan)->asObject()->first();
+        $siswa = $this->siswa->where('kelas_id', $kelas->id)->orderBy('nama', 'ASC')->asObject()->findAll();
+        $this->mpdf->WriteHTML(view('backend/pages/mapel/components/detail/laporan-data-nilai-siswa', [
+            'mapel' => $mapel,
+            'kelas' => $kelas,
+            'jurusan' => $jurusan,
+            'guru' => $guru,
+            'siswa' => $siswa,
+            'nilaiRataRata' => $nilaiRataRata,
+            'wali' => $this->guru->where('id', $kelas->id_guru)->asObject()->first()
+
+        ]));
+        $this->mpdf->SetWatermarkImage('./assets/logo-pendidikan.png', 0.20, 50);
+        $this->mpdf->showWatermarkImage = true;
+        $this->mpdf->setFooter('SMK XXXX XXXX - ' . $kelas->kelas . ' ' . $jurusan->jurusan . ' [{PAGENO}]');
+        $this->response->setHeader('Content-Type', 'application/pdf');
+        $this->mpdf->Output('Data Nilai Siswa-Siswi Kelas' . $kelas->kelas . ' ' . $jurusan->jurusan . '.pdf', 'I');
     }
 }
