@@ -34,7 +34,7 @@ class MapelController extends BaseController
             'title' => 'Halaman Daftar Guru',
             'keyword' => $keyword,
             'currentPage' => $currentPage,
-            'mapel' => $mapel->paginate(5, 'pagination'),
+            'mapel' => $mapel->paginate(6, 'pagination'),
             'pager' => $this->mapel->pager,
             'validation' => $this->validation,
             'guru' => $this->guru->asObject()->findAll(),

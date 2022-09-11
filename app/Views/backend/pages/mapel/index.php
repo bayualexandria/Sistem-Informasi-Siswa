@@ -3,7 +3,7 @@
 <?= $this->section('pages'); ?>
 <div class="grid grid-cols-5 bg-slate-100">
   <div class="col-span-4 col-start-2 p-4 overflow-y-auto">
-    <div class="flex flex-col w-full p-5 bg-white rounded-md shadow-md">
+    <div class="flex flex-col w-full p-5 ">
       <h6 class="text-lg font-bold text-slate-500">Data Mata Pelajaran</h6>
       <!-- Start Head -->
       <div class="flex flex-col items-center py-5 md:justify-between md:flex-row gap-y-5">
@@ -23,49 +23,12 @@
         </button>
       </div>
       <!-- End Head -->
-      <!-- Start Table Data Mapel -->
-      <div class="w-full overflow-hidden overflow-x-scroll border rounded-lg boder-slate-300 md:overflow-hidden">
-        <table class="w-full divide-y divide-gray-300 ">
-          <thead class="bg-gray-50">
-            <tr>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                #
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Mapel
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Kelas
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Jurusan
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Guru Mapel
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Jadwal
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Detail
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Ubah
-              </th>
-              <th class="px-6 py-[10px] text-sm text-gray-500">
-                Hapus
-              </th>
 
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-300">
-            <!-- Start Looping Data -->
-            <?= $this->include('backend/pages/mapel/components/mapel/looping'); ?>
-            <!-- End Looping Data -->
-          </tbody>
-        </table>
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Start Looping Data -->
+        <?= $this->include('backend/pages/mapel/components/mapel/looping'); ?>
+        <!-- End Looping Data -->
       </div>
-      <!-- End Table Data Mapel -->
 
       <!-- Start Pagination -->
       <div class="flex justify-end py-5">
