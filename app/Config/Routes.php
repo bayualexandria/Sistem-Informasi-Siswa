@@ -78,7 +78,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
         // CRUD Data Mapel
         $routes->group('mata-pelajaran', function ($routes) {
             $routes->get('/', 'Backend\MapelController::index');
-            $routes->get('detail/(:any)', 'Backend\MapelController::detail/$1');
+            // $routes->get('detail/(:any)', 'Backend\MapelController::detail/$1');
             $routes->put('(:any)', 'Backend\MapelController::update/$1');
             $routes->post('/', 'Backend\MapelController::insert');
             $routes->delete('(:any)', 'Backend\MapelController::delete/$1');
@@ -114,6 +114,11 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
             $routes->post('/(:any)', 'Backend\SemesterController::update/$1');
         });
     });
+
+    // Read and Detail Mapel by Guru
+    $routes->get('/mapel/(:any)', 'Backend\MapelController::mapelByGuru/$1');
+    $routes->get('/mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
+
 
     // CRUD Data Siswa
     $routes->group('siswa', function ($routes) {

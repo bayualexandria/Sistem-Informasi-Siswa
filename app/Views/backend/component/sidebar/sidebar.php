@@ -32,7 +32,11 @@
                             <li class="flex justify-center md:justify-between"><a href="<?= base_url('/guru'); ?>">Guru</a></li>
                         <?php endif; ?>
                         <li class="flex justify-center md:justify-between"><a href="<?= base_url('/siswa'); ?>">Siswa</a></li>
-                        <li class="flex justify-center md:justify-between"><a href="<?= base_url('/mata-pelajaran'); ?>">Mapel</a></li>
+                        <?php if (auth()->status_id == 1) : ?>
+                            <li class="flex justify-center md:justify-between"><a href="<?= base_url('/mata-pelajaran'); ?>">Mapel</a></li>
+                        <?php else : ?>
+                            <li class="flex justify-center md:justify-between"><a href="<?= base_url('/mapel/' . guru()->nip); ?>">Mapel</a></li>
+                        <?php endif; ?>
                     </div>
                 </ul>
             </li>

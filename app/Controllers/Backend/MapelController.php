@@ -22,18 +22,53 @@ class MapelController extends BaseController
 
     public function index()
     {
-        $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
+        // $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
         $keyword = $this->request->getVar('search');
+        // $keywordByGuru = $this->request->getVar('search-by-guru');
 
         if ($keyword)
             $mapel = $this->mapel->search($keyword)->asObject();
         else
             $mapel = $this->mapel->getAll()->asObject();
 
+        // if ($keywordByGuru)
+        //     $mapelByGuru = $this->mapel->searchByGuru($keywordByGuru)->asObject();
+        // else
+        //     $mapelByGuru = $this->mapel->getAllByGuru()->asObject();
+
+
+
         return view('backend/pages/mapel/index', [
-            'title' => 'Halaman Daftar Guru',
+            'title' => 'Halaman Daftar Mata Pelajaran',
             'keyword' => $keyword,
-            'currentPage' => $currentPage,
+            // 'currentPage' => $currentPage,
+            'mapel' => $mapel->paginate(6, 'pagination'),
+            'pager' => $this->mapel->pager,
+            'validation' => $this->validation,
+            'guru' => $this->guru->asObject()->findAll(),
+            'kelas' => $this->kelas->joinJurusan(),
+            'tahun' => $this->semester->like('tahun_pelajaran', date('Y'))->findAll(),
+
+        ]);
+    }
+
+    public function mapelByGuru($nip)
+    {
+        // $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
+        $keyword = $this->request->getVar('search-by-guru');
+
+
+        if ($keyword)
+            $mapel = $this->mapel->searchByGuru($keyword)->asObject();
+        else
+            $mapel = $this->mapel->getAllByGuru()->asObject();
+
+
+
+        return view('backend/pages/mapel/mapelByGuru', [
+            'title' => 'Halaman Daftar Mata Pelajaran',
+            'keyword' => $keyword,
+            // 'currentPage' => $currentPage,
             'mapel' => $mapel->paginate(6, 'pagination'),
             'pager' => $this->mapel->pager,
             'validation' => $this->validation,

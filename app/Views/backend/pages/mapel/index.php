@@ -9,7 +9,9 @@
       <div class="flex flex-col items-center py-5 md:justify-between md:flex-row gap-y-5">
         <form action="<?= base_url('/mata-pelajaran') ?>">
           <div class="relative mt-1 rounded-md shadow-sm md:block">
+
             <input type="search" name="search" id="search" class="block w-full px-4 py-2 border rounded-md shadow-md border-sky-300 iw wlp2s0mon interface add mon0 type monitorfocus:ring-sky-500 focus:border-sky-500 sm:text-sm focus:outline-none" autocomplete="off" autofocus value="<?= $keyword; ?>">
+
             <button type="submit" class="absolute inset-y-0 right-0 flex items-center px-6 py-2 text-white transition duration-300 shadow-md bg-primary rounded-r-md hover:ring-2 hover:ring-sky-300 hover:bg-white hover:text-primary">
               <i class="far fa-search"></i>
             </button>
