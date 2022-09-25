@@ -44,27 +44,26 @@
                         <h3 class="text-lg font-semibold text-slate-900 group-hover:text-white">Mapel Pelajaran</h3>
                     </div>
                     <div class="flex justify-center pt-1">
-                        <p class="text-lg font-bold text-slate-500 group-hover:text-white"><?= $mapel;?></p>
+                        <p class="text-lg font-bold text-slate-500 group-hover:text-white">8</p>
                     </div>
                 </a>
 
                 <a href="#" class="p-6 transition duration-300 bg-white rounded-lg shadow-lg group ring-1 ring-slate-900/5 hover:bg-rose-500 hover:ring-rose-500">
                     <div class="flex items-center gap-x-8">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-rose-500 group-hover:text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-rose-500 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-
-                        <h3 class="text-lg font-semibold text-slate-900 group-hover:text-white">Ruang Kelas</h3>
+                        <h3 class="text-lg font-semibold text-slate-900 group-hover:text-white">Jadwal</h3>
                     </div>
                     <div class="flex justify-center pt-1">
-                        <p class="text-lg font-bold text-slate-500 group-hover:text-white"><?= $kelas;?></p>
+                        <p class="text-lg font-bold text-slate-500 group-hover:text-white">8</p>
                     </div>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10">
                 <div class="flex flex-col p-5 bg-white rounded-md shadow-md">
-                    <div class="flex flex-row items-center justify-between py-5">
+                    <div class="flex flex-col items-center justify-between py-5 md:flex-row">
                         <h6 class="text-base font-bold text-slate-500">Data tahun ajaran</h6>
                         <button data-bs-toggle="modal" data-bs-target="#add" id="addBtnModal" onclick="showModal('addBtnModal')" class="px-2 py-1 text-sm font-bold text-white transition duration-200 rounded-md shadow-md bg-cyan-500 hover:text-cyan-500 hover:bg-white hover:ring hover:ring-cyan-200">Tambah data</button>
                     </div>
@@ -93,7 +92,7 @@
                                             </div>
                                         </td>
                                         <td class="px-3 py-[10px]">
-                                            <button type="button" data-bs-toggle="modal" id="editBtnModal" onclick="showModal('editBtnModal')" onclick="showModal('editBtnModal')" data-bs-target="#edit" class="text-sm text-center transition duration-300 outline-none hover:text-gray-500 text-sky-500">
+                                            <button type="button" data-bs-toggle="modal" id="editBtnModal<?= $s->id ?>" onclick="showModal('editBtnModal<?= $s->id ?>')" onclick="showModal('editBtnModal<?= $s->id ?>')" data-bs-target="#edit<?= $s->id ?>" class="text-sm text-center transition duration-300 outline-none hover:text-gray-500 text-sky-500">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                                                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                                 </svg>
@@ -111,79 +110,137 @@
                                 <!-- End Looping Data -->
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
-
-            <!-- Start Modal Add Data Semester -->
-            <div class="relative z-10 hidden" id="add" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-
-                <div class="fixed inset-0 transition-opacity bg-opacity-75 bg-gray-500/50"></div>
-
-                <div class="fixed inset-0 z-10 overflow-y-auto">
-                    <div class="flex items-center justify-center min-h-full p-4 text-center ">
-                        <div class="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-lg sm:w-full">
-                            <div class="px-5 pt-5">
-
-                                <h1 class="text-base font-bold text-slate-500">Tambah Data Tahun Ajaran</h1>
-                            </div>
-                            <form action="<?= base_url('/semester'); ?>" method="post">
-                                <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
-
-                                    <?= csrf_field(); ?>
-                                    <div class="flex flex-row p-4 gap-y-2 gap-x-5">
-                                        <div class="flex flex-col w-full gap-y-2">
-                                            <label for="semester" class="text-base font-normal text-slate-600">Semester</label>
-                                            <select name="semester" id="semester" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
-                                                <option value="I" class="text-sm font-bold text-slate-500">I</option>
-                                                <option value="II" class="text-sm font-bold text-slate-500">II</option>
-                                            </select>
-                                            <span class="flex">
-                                                <p class="pt-2 font-sans text-xs text-red-500">
-                                                    <?= $validation->getError('semester') ?>
-                                                </p>
-                                            </span>
-                                        </div>
-                                        <div class="flex flex-col w-full gap-y-2">
-                                            <label for="semester" class="text-base font-normal text-slate-600">Tahun Ajaran</label>
-                                            <div class="flex flex-row items-center gap-x-3">
-                                                <select name="tahun-start" id="tahun-start" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
-                                                    <option value="<?= date('Y') + 1; ?>" class="text-sm font-bold text-slate-500"><?= date('Y') + 1; ?></option>
-                                                    <?php for ($i = date('Y'); $i >= date('Y') - 22; $i -= 1) : ?>
-                                                        <option value="<?= $i; ?>" class="text-sm font-bold text-slate-500"><?= $i; ?></option>
-                                                    <?php endfor; ?>
-                                                </select>
-                                                <p class="font-bold text-slate-500">/</p>
-                                                <select name="tahun-end" id="tahun-end" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
-                                                    <option value="<?= date('Y') + 1; ?>" class="text-sm font-bold text-slate-500"><?= date('Y') + 1; ?></option>
-                                                    <?php for ($i = date('Y'); $i >= date('Y') - 22; $i -= 1) : ?>
-                                                        <option value="<?= $i; ?>" class="text-sm font-bold text-slate-500"><?= $i; ?></option>
-                                                    <?php endfor; ?>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse gap-x-2">
-                                    <button type="submit" class="px-2 py-1 text-base font-bold text-white transition duration-200 rounded-md bg-primary hover:bg-white hover:text-primary hover:ring-1 hover:ring-primary">Simpan</button>
-                                    <button type="button" class="px-2 py-1 text-base font-bold text-white transition duration-200 rounded-md bg-slate-500 hover:bg-white hover:text-slate-500 hover:ring-1 hover:ring-slate-300" onclick="showModal('addBtnModal')">Batal</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Modal Add Data Semester -->
         </div>
     </div>
 </div>
+
+<!-- Start Modal Add Data Semester -->
+<div class="relative z-10 hidden" id="add" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+    <div class="fixed inset-0 transition-opacity bg-opacity-75 bg-gray-500/50"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-full p-4 text-center ">
+            <div class="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-lg sm:w-full">
+                <div class="px-5 pt-5">
+
+                    <h1 class="text-base font-bold text-slate-500">Tambah Data Tahun Ajaran</h1>
+                </div>
+                <form action="<?= base_url('/semester'); ?>" method="post">
+                    <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+
+                        <?= csrf_field(); ?>
+                        <div class="flex flex-row p-4 gap-y-2 gap-x-5">
+                            <div class="flex flex-col w-full gap-y-2">
+                                <label for="semester" class="text-base font-normal text-slate-600">Semester</label>
+                                <select name="semester" id="semester" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
+                                    <option value="I" class="text-sm font-bold text-slate-500">I</option>
+                                    <option value="II" class="text-sm font-bold text-slate-500">II</option>
+                                </select>
+                                <span class="flex">
+                                    <p class="pt-2 font-sans text-xs text-red-500">
+                                        <?= $validation->getError('semester') ?>
+                                    </p>
+                                </span>
+                            </div>
+                            <div class="flex flex-col w-full gap-y-2">
+                                <label for="semester" class="text-base font-normal text-slate-600">Tahun Ajaran</label>
+                                <div class="flex flex-row items-center gap-x-3">
+                                    <select name="tahun-start" id="tahun-start" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
+                                        <option value="<?= date('Y') + 1; ?>" class="text-sm font-bold text-slate-500"><?= date('Y') + 1; ?></option>
+                                        <?php for ($i = date('Y'); $i >= date('Y') - 22; $i -= 1) : ?>
+                                            <option value="<?= $i; ?>" class="text-sm font-bold text-slate-500"><?= $i; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                    <p class="font-bold text-slate-500">/</p>
+                                    <select name="tahun-end" id="tahun-end" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
+                                        <option value="<?= date('Y') + 1; ?>" class="text-sm font-bold text-slate-500"><?= date('Y') + 1; ?></option>
+                                        <?php for ($i = date('Y'); $i >= date('Y') - 22; $i -= 1) : ?>
+                                            <option value="<?= $i; ?>" class="text-sm font-bold text-slate-500"><?= $i; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse gap-x-2">
+                        <button type="submit" class="px-2 py-1 text-base font-bold text-white transition duration-200 rounded-md bg-primary hover:bg-white hover:text-primary hover:ring-1 hover:ring-primary">Simpan</button>
+                        <button type="button" class="px-2 py-1 text-base font-bold text-white transition duration-200 rounded-md bg-slate-500 hover:bg-white hover:text-slate-500 hover:ring-1 hover:ring-slate-300" onclick="showModal('addBtnModal')">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Add Data Semester -->
+
+<!-- Start Modal Update Data Semester -->
+<?php foreach ($semester as $s) : ?>
+    <div class="relative z-10 hidden" id="edit<?= $s->id ?>" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 transition-opacity bg-opacity-75 bg-gray-500/50"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-full p-4 text-center ">
+                <div class="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-lg sm:w-full">
+                    <div class="px-5 pt-5">
+                        <h1 class="text-base font-bold text-slate-500">Update Data Tahun Ajaran</h1>
+                    </div>
+                    <form action="<?= base_url('/semester'); ?>" method="post">
+                        <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+
+                            <?= csrf_field(); ?>
+                            <div class="flex flex-row p-4 gap-y-2 gap-x-5">
+                                <div class="flex flex-col w-full gap-y-2">
+                                    <label for="semester" class="text-base font-normal text-slate-600">Semester</label>
+                                    <select name="semester" id="semester" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
+                                        <option value="I" class="text-sm font-bold text-slate-500" <?= $s->semester === 'I' ? 'selected' : ''; ?>>I</option>
+                                        <option value="II" class="text-sm font-bold text-slate-500" <?= $s->semester === 'II' ? 'selected' : ''; ?>>II</option>
+                                    </select>
+
+                                </div>
+                                <div class="flex flex-col w-full gap-y-2">
+                                    <?php
+                                    $tahun = explode('/', $s->tahun_pelajaran);
+                                    $start = $tahun[0];
+                                    $end = $tahun[1];
+                                    ?>
+                                    <label for="semester" class="text-base font-normal text-slate-600">Tahun Ajaran</label>
+                                    <div class="flex flex-row items-center gap-x-3">
+                                        <select name="tahun-start" id="tahun-start" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
+                                            <option value="<?= date('Y') + 1; ?>" class="text-sm font-bold text-slate-500"><?= date('Y') + 1; ?></option>
+                                            <?php for ($i = date('Y'); $i >= date('Y') - 22; $i -= 1) : ?>
+                                                <option value="<?= $i; ?>" <?= $i == $start ? 'selected' : ''; ?> class="text-sm font-bold text-slate-500"><?= $i; ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                        <p class="font-bold text-slate-500">/</p>
+                                        <select name="tahun-end" id="tahun-end" class="px-4 py-2 bg-white rounded-md shadow-md outline-none text-slate-500">
+                                            <option value="<?= date('Y') + 1; ?>" class="text-sm font-bold text-slate-500"><?= date('Y') + 1; ?></option>
+                                            <?php for ($i = date('Y'); $i >= date('Y') - 22; $i -= 1) : ?>
+                                                <option value="<?= $i; ?>" <?= $i === $end ? 'selected' : ''; ?> class="text-sm font-bold text-slate-500"><?= $i; ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse gap-x-2">
+                            <button type="submit" class="px-2 py-1 text-base font-bold text-white transition duration-200 rounded-md bg-primary hover:bg-white hover:text-primary hover:ring-1 hover:ring-primary">Simpan</button>
+                            <button type="button" class="px-2 py-1 text-base font-bold text-white transition duration-200 rounded-md bg-slate-500 hover:bg-white hover:text-slate-500 hover:ring-1 hover:ring-slate-300" data-bs-toggle="modal" id="editBtnModal<?= $s->id ?>" onclick="showModal('editBtnModal<?= $s->id ?>')" onclick="showModal('editBtnModal<?= $s->id ?>')" data-bs-target="#edit<?= $s->id ?>">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- End Modal Update Data Semester -->
 <?= $this->endSection(); ?>
 
-<?php $this->section('script'); ?>
+<?= $this->section('script'); ?>
 <script>
     function showModal(id) {
         const btnModal = document.getElementById(id);
@@ -197,4 +254,4 @@
         // return location.href = '<?= base_url('/guru') ?>';
     }
 </script>
-<?php $this->endSection(); ?>
+<?= $this->endSection(); ?>

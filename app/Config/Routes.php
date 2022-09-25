@@ -111,6 +111,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
         // CRUD Data Semester
         $routes->group('semester', function ($routes) {
             $routes->post('/', 'Backend\SemesterController::insert');
+            $routes->post('/(:any)', 'Backend\SemesterController::update/$1');
         });
     });
 

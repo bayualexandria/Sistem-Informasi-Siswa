@@ -23,4 +23,16 @@ class SemesterController extends BaseController
 
         return redirect()->to('/dashboard')->with('success', 'Data semester berhasil ditambahkan');
     }
+
+    public function update($id)
+    {
+        $start = $this->request->getVar('tahun-start');
+        $end = $this->request->getVar('tahun-end');
+        $this->semester->update($id, [
+            'semester' => $this->request->getVar('semester'),
+            'tahun_pelajaran' => $start . '/' . $end
+        ]);
+
+        return redirect()->to('/dashboard')->with('success', 'Data semester berhasil ditambahkan');
+    }
 }
