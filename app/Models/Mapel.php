@@ -77,22 +77,22 @@ class Mapel extends Model
             ->orderBy('nama_mapel', 'ASC');
     }
 
-    // public function searchByGuru($keywordByGuru)
-    // {
-    //     return $this->table('mapel')
-    //         ->select('mapel.*,guru.nama,kelas.kelas,mapel.guru_id,mapel.kelas_id,jurusan.jurusan')
-    //         ->join('guru', 'guru.id=mapel.guru_id')
-    //         ->join('kelas', 'kelas.id=mapel.kelas_id')
-    //         ->join('jurusan', 'jurusan.id=kelas.id_jurusan')
-    //         ->where('guru_id', guru()->id)
-    //         ->like('nama_mapel', $keywordByGuru)
-    //         ->orLike('nama', $keywordByGuru)
-    //         ->orLike('jurusan', $keywordByGuru)
-    //         ->orLike('kelas', $keywordByGuru)
-    //         ->orLike('hari', $keywordByGuru)
-    //         ->orLike('waktu', $keywordByGuru)
-    //         ->orderBy('nama_mapel', 'ASC');
-    // }
+    public function searchByGuru($keywordByGuru)
+    {
+        return $this->table('mapel')
+            ->select('mapel.*,guru.nama,kelas.kelas,mapel.guru_id,mapel.kelas_id,jurusan.jurusan')
+            ->join('guru', 'guru.id=mapel.guru_id')
+            ->join('kelas', 'kelas.id=mapel.kelas_id')
+            ->join('jurusan', 'jurusan.id=kelas.id_jurusan')
+            ->where('guru_id', guru()->id)
+            ->like('nama_mapel', $keywordByGuru)
+            ->orLike('nama', $keywordByGuru)
+            ->orLike('jurusan', $keywordByGuru)
+            ->orLike('kelas', $keywordByGuru)
+            ->orLike('hari', $keywordByGuru)
+            ->orLike('waktu', $keywordByGuru)
+            ->orderBy('nama_mapel', 'ASC');
+    }
 
     public function getDayMapel($id)
     {

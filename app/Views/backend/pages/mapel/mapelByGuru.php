@@ -7,7 +7,7 @@
             <h6 class="text-lg font-bold text-slate-500">Data Mata Pelajaran</h6>
             <!-- Start Head -->
             <div class="flex flex-col items-center py-5 md:justify-between md:flex-row gap-y-5">
-                <form action="<?= base_url('/mata-pelajaran') ?>">
+                <form action="<?= base_url('/mapel/' . guru()->nip) ?>">
                     <div class="relative mt-1 rounded-md shadow-sm md:block">
                         <input type="search" name="search" id="search" class="block w-full px-4 py-2 border rounded-md shadow-md border-sky-300 iw wlp2s0mon interface add mon0 type monitorfocus:ring-sky-500 focus:border-sky-500 sm:text-sm focus:outline-none" autocomplete="off" autofocus value="<?= $keyword; ?>">
 

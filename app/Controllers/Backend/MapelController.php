@@ -55,7 +55,7 @@ class MapelController extends BaseController
     public function mapelByGuru($nip)
     {
         // $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
-        $keyword = $this->request->getVar('search-by-guru');
+        $keyword = $this->request->getVar('search');
 
 
         if ($keyword)
