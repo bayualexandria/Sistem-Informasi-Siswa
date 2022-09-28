@@ -12,34 +12,74 @@
                     <p class="hidden md:block">Home</p>
                 </a>
             </li>
-            <li class="transition duration-300 hover:stroke-2 ">
-                <div class="flex flex-col items-center justify-center cursor-pointer md:justify-between hover:text-slate-300 md:items-start md:flex-row" onclick="showSidebar('master-data')" id="master-data">
-                    <div class="flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                        </svg>
-                        <p class="hidden md:block">Master Data</p>
+            <?php if (auth()->status_id == 1) : ?>
+                <li class="transition duration-300 hover:stroke-2 ">
+                    <div class="flex flex-col items-center justify-center cursor-pointer md:justify-between hover:text-slate-300 md:items-start md:flex-row" onclick="showSidebar('master-data')" id="master-data">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                            </svg>
+                            <p class="hidden md:block">Master Data</p>
+                        </div>
+                        <button class="transition duration-300 ease-in-out bg-transparent">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
-                    <button class="transition duration-300 ease-in-out bg-transparent">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-                <ul id="menu-master-data" class="hidden w-full mt-5 md:pl-5">
-                    <div class="flex flex-col gap-y-4">
-                        <?php if (auth()->status_id == 1) : ?>
+                    <ul id="menu-master-data" class="hidden w-full mt-5 md:pl-5">
+                        <div class="flex flex-col gap-y-4">
                             <li class="flex justify-center md:justify-between"><a href="<?= base_url('/guru'); ?>">Guru</a></li>
-                        <?php endif; ?>
-                        <li class="flex justify-center md:justify-between"><a href="<?= base_url('/siswa'); ?>">Siswa</a></li>
-                        <?php if (auth()->status_id == 1) : ?>
+                            <li class="flex justify-center md:justify-between"><a href="<?= base_url('/siswa'); ?>">Siswa</a></li>
                             <li class="flex justify-center md:justify-between"><a href="<?= base_url('/mata-pelajaran'); ?>">Mapel</a></li>
-                        <?php else : ?>
-                            <li class="flex justify-center md:justify-between"><a href="<?= base_url('/mapel/' . guru()->nip); ?>">Mapel</a></li>
-                        <?php endif; ?>
-                    </div>
-                </ul>
-            </li>
+
+                        </div>
+                    </ul>
+                </li>
+            <?php else : ?>
+                <?php $db = db_connect();
+                $kelas = $db->table('kelas')->where('id_guru', guru()->id)->get()->getResultObject();
+                ?>
+                <?php if ($kelas) : ?>
+                    <li class="transition duration-300 hover:stroke-2 ">
+                        <div class="flex flex-col items-center justify-center cursor-pointer md:justify-between hover:text-slate-300 md:items-start md:flex-row" onclick="showSidebar('master-data')" id="master-data">
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                                </svg>
+                                <p class="hidden md:block">Siswa</p>
+                            </div>
+                            <button class="transition duration-300 ease-in-out bg-transparent">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                        <ul id="menu-master-data" class="hidden w-full mt-5 md:pl-5">
+                            <div class="flex flex-col gap-y-4">
+                                <?php foreach ($kelas as $k) : ?>
+                                    <li class="flex justify-center md:justify-between">
+                                        <a href="<?= base_url('/siswa/wali-kelas/' . $k->id); ?>"><?= $k->kelas; ?>
+                                            <?php $jurusan = $db->table('jurusan')->where('id', $k->id_jurusan)->get()->getResultObject(); ?>
+                                            <?php foreach ($jurusan as $j) : ?>
+                                                <?= $j->jurusan; ?>
+                                            <?php endforeach; ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </div>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <li class="flex justify-center md:justify-between">
+                    <a href="<?= base_url('/mapel/' . guru()->nip); ?>" class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+                        </svg>
+                        <p class="hidden md:block">Mapel</p>
+                    </a>
+                </li>
+            <?php endif; ?>
             <?php if (auth()->status_id == 1) : ?>
                 <li class="flex justify-center md:justify-between">
                     <a href="<?= base_url('/kelas'); ?>" class="flex items-center gap-3">

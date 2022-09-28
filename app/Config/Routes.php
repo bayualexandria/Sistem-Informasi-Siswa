@@ -119,6 +119,8 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/mapel/(:any)', 'Backend\MapelController::mapelByGuru/$1');
     $routes->get('/mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
 
+    // Detail data Kelas
+    $routes->get('/siswa/wali-kelas/(:any)', 'Backend\KelasController::kelasSiswa/$1');
 
     // CRUD Data Siswa
     $routes->group('siswa', function ($routes) {
