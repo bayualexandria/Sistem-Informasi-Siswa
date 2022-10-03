@@ -8,7 +8,7 @@
         <div class="flex flex-col lg:flex-row lg:gap-x-5 gap-y-5">
             <div class="flex flex-col w-full">
                 <!-- Start Head -->
-                <div id="searchBoxSiswa" kelas="<?= $kelas->id; ?>" class="py-10">
+                <div id="searchBoxSiswa" kelas="<?= $kelas->id; ?>" class="py-10" status-id="<?= session('status_id'); ?>">
                 </div>
                 <!-- End Head -->
 
@@ -66,7 +66,9 @@
                                 <th class="px-3 py-[10px] text-sm text-gray-500">#</th>
                                 <th class="px-3 py-[10px] text-sm text-gray-500">No Induk</th>
                                 <th class="px-3 py-[10px] text-sm text-gray-500">Nama</th>
-                                <th class="px-3 py-[10px] text-sm text-gray-500">Ubah</th>
+                                <?php if (session('status_id') == 1) : ?>
+                                    <th class="px-3 py-[10px] text-sm text-gray-500">Ubah</th>
+                                <?php endif; ?>
                                 <th class="px-3 py-[10px] text-sm text-gray-500">Hapus</th>
                             </tr>
                         </thead>

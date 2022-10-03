@@ -3285,7 +3285,7 @@ function SearchBoxSiswa(props) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return fetch('/api/search/siswa').then(function (res) {
+              return fetch("/api/search/siswa").then(function (res) {
                 return res.json();
               }).then(function (res) {
                 return res.data;
@@ -3346,18 +3346,27 @@ function SearchBoxSiswa(props) {
             case 3:
               response = _context2.sent;
               console.log(response);
-              return _context2.abrupt("return", location.href = '/kelas/siswa/' + props.kelas);
 
-            case 8:
-              _context2.prev = 8;
-              _context2.t0 = _context2["catch"](0);
+              if (!(props.statusId === 1)) {
+                _context2.next = 7;
+                break;
+              }
+
+              return _context2.abrupt("return", location.href = "/kelas/siswa/" + props.kelas);
+
+            case 7:
+              return _context2.abrupt("return", location.href = "/siswa/wali-kelas/" + props.kelas);
 
             case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](0);
+
+            case 12:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 10]]);
     }));
 
     return function handleOnSelect(_x) {
@@ -3366,7 +3375,7 @@ function SearchBoxSiswa(props) {
   }();
 
   var handleOnFocus = function handleOnFocus() {
-    console.log('Focused');
+    console.log("Focused");
   };
 
   var formatResult = function formatResult(item) {
@@ -3399,16 +3408,17 @@ function SearchBoxSiswa(props) {
       autoFocus: true,
       formatResult: formatResult,
       fuseOptions: {
-        keys: ['nama', 'id']
+        keys: ["nama", "id"]
       }
     })
   });
 }
 
-if (document.getElementById('searchBoxSiswa')) {
-  var item = document.getElementById('searchBoxSiswa');
+if (document.getElementById("searchBoxSiswa")) {
+  var item = document.getElementById("searchBoxSiswa");
   react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(SearchBoxSiswa, {
-    kelas: item.getAttribute('kelas')
+    kelas: item.getAttribute("kelas"),
+    statusId: item.getAttribute("status-id")
   }), item);
 }
 

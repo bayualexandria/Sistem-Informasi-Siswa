@@ -1,14 +1,14 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 export default function SearchBoxSiswa(props) {
   const [data, setData] = useState([]);
 
   const getDataSiswaByKeyword = async () => {
     try {
-      const response = await fetch('/api/search/siswa')
+      const response = await fetch("/api/search/siswa")
         .then((res) => res.json())
         .then((res) => res.data);
       setData(response);
@@ -38,12 +38,15 @@ export default function SearchBoxSiswa(props) {
         })
         .then((res) => res.data);
       console.log(response);
-      return (location.href = '/kelas/siswa/' + props.kelas);
+      if (props.statusId === 1) {
+        return (location.href = "/kelas/siswa/" + props.kelas);
+      }
+      return (location.href = "/siswa/wali-kelas/" + props.kelas);
     } catch (error) {}
   };
 
   const handleOnFocus = () => {
-    console.log('Focused');
+    console.log("Focused");
   };
 
   const formatResult = (item) => {
@@ -72,13 +75,19 @@ export default function SearchBoxSiswa(props) {
         onFocus={handleOnFocus}
         autoFocus
         formatResult={formatResult}
-        fuseOptions={{ keys: ['nama', 'id'] }}
+        fuseOptions={{ keys: ["nama", "id"] }}
       ></ReactSearchAutocomplete>
     </div>
   );
 }
 
-if (document.getElementById('searchBoxSiswa')) {
-  const item = document.getElementById('searchBoxSiswa');
-  ReactDOM.render(<SearchBoxSiswa kelas={item.getAttribute('kelas')} />, item);
+if (document.getElementById("searchBoxSiswa")) {
+  const item = document.getElementById("searchBoxSiswa");
+  ReactDOM.render(
+    <SearchBoxSiswa
+      kelas={item.getAttribute("kelas")}
+      statusId={item.getAttribute("status-id")}
+    />,
+    item
+  );
 }

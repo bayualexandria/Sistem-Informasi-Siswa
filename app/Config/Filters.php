@@ -2,7 +2,7 @@
 
 namespace Config;
 
-use App\Filters\{AdminAuth, Cors, AuthFilter, RoleAdmin, Authentication};
+use App\Filters\{AdminAuth, Cors, AuthFilter, RoleAdmin, Authentication, WaliKelas};
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -29,6 +29,7 @@ class Filters extends BaseConfig
         'role-admin' => RoleAdmin::class,
         'auth' => AuthFilter::class,
         'cors' => Cors::class,
+        'wali-kelas' => WaliKelas::class
     ];
 
     /**

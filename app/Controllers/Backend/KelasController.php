@@ -121,7 +121,7 @@ class KelasController extends BaseController
             'guru' => $this->guru->where('id', $kelas->id_guru)->asObject()->first(),
             'jurusan' => $this->jurusan->where('id', $kelas->id_jurusan)->asObject()->first(),
             'mapel' => $this->mapel->getDayMapel($id),
-            
+
 
         ]);
     }
@@ -134,8 +134,11 @@ class KelasController extends BaseController
         $this->siswa->update($id, [
             'kelas_id' => $kelas
         ]);
+        if (session('status_id') == 1) {
 
-        return redirect()->to('/kelas/siswa/' . $idKelas)->with('message', 'Data berhasil diupdate');
+            return redirect()->to('/kelas/siswa/' . $idKelas)->with('message', 'Data berhasil diupdate');
+        }
+        return redirect()->to('siswa/wali-kelas/' . guru()->id)->with('message', 'Data berhasil diupdate');
     }
 
     public function deleteKelasSiswa($id)
@@ -145,6 +148,9 @@ class KelasController extends BaseController
             'kelas_id' => null
         ]);
 
-        return redirect()->to('/kelas/siswa/' . $idKelas)->with('message', 'Data berhasil dihapus dari kelas ini');
+        if (session('status_id') == 1) {
+            return redirect()->to('/kelas/siswa/' . $idKelas)->with('message', 'Data berhasil dihapus dari kelas ini');
+        }
+        return redirect()->to('siswa/wali-kelas/' . guru()->id)->with('message', 'Data berhasil dihapus dari kelas ini');
     }
 }

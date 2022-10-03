@@ -61,6 +61,12 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/profile', 'Backend\DashboardController::profile');
     $routes->put('/profile', 'Backend\DashboardController::updateProfile');
 
+    // Access Admin And Wali Kelas
+    $routes->group('', ['filter' => ['wali-kelas', 'role-admin']], function ($routes) {
+        $routes->post('/kelas', 'Backend\KelasController::insert');
+    });
+
+    // Access Admin
     $routes->group('', ['filter' => 'role-admin'], function ($routes) {
 
         $routes->put('/profile-admin', 'Backend\DashboardController::profileAdmin');
@@ -102,9 +108,9 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
             $routes->get('/', 'Backend\KelasController::index');
             $routes->get('siswa/(:any)', 'Backend\KelasController::kelasSiswa/$1');
             $routes->put('siswa/delete/(:any)', 'Backend\KelasController::deleteKelasSiswa/$1');
-            $routes->put('siswa/(:any)', 'Backend\KelasController::updateKelasSiswa/$1');
+            // $routes->put('siswa/(:any)', 'Backend\KelasController::updateKelasSiswa/$1');
             $routes->put('(:any)', 'Backend\KelasController::update/$1');
-            $routes->post('/', 'Backend\KelasController::insert');
+            // $routes->post('/', 'Backend\KelasController::insert');
             $routes->delete('(:any)', 'Backend\KelasController::delete/$1');
         });
 
@@ -115,12 +121,20 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
         });
     });
 
+    // Access Wali Kelas
+    $routes->group('', ['filter' => 'wali-kelas'], function ($routes) {
+        // Detail data Kelas
+        $routes->get('/siswa/wali-kelas/(:any)', 'Backend\KelasController::kelasSiswa/$1');
+        $routes->put('/kelas-siswa-delete/(:any)', 'Backend\KelasController::deleteKelasSiswa/$1');
+
+        // Detail mata pelajaran
+        $routes->get('mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
+    });
+
     // Read and Detail Mapel by Guru
     $routes->get('/mapel/(:any)', 'Backend\MapelController::mapelByGuru/$1');
     $routes->get('/mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
 
-    // Detail data Kelas
-    $routes->get('/siswa/wali-kelas/(:any)', 'Backend\KelasController::kelasSiswa/$1');
 
     // CRUD Data Siswa
     $routes->group('siswa', function ($routes) {
