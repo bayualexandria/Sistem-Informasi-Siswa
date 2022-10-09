@@ -86,7 +86,7 @@ class KelasController extends BaseController
 
         $kelas = $this->kelas->where('id', $id)->first();
 
-        $this->kelas->update($kelas['id'], [
+        $this->kelas->update($id, [
             'kelas' => htmlspecialchars($this->request->getVar('kelas')),
             'id_jurusan' => $this->request->getVar('id_jurusan'),
             'id_guru' => $this->request->getVar('id_guru')

@@ -108,9 +108,9 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
             $routes->get('/', 'Backend\KelasController::index');
             $routes->get('siswa/(:any)', 'Backend\KelasController::kelasSiswa/$1');
             $routes->put('siswa/delete/(:any)', 'Backend\KelasController::deleteKelasSiswa/$1');
-            // $routes->put('siswa/(:any)', 'Backend\KelasController::updateKelasSiswa/$1');
+            $routes->put('siswa/(:any)', 'Backend\KelasController::updateKelasSiswa/$1');
             $routes->put('(:any)', 'Backend\KelasController::update/$1');
-            // $routes->post('/', 'Backend\KelasController::insert');
+            $routes->post('/', 'Backend\KelasController::insert');
             $routes->delete('(:any)', 'Backend\KelasController::delete/$1');
         });
 
@@ -153,11 +153,11 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
 // RestFull API
 // Back-end
-$routes->group('', ['filter' => 'admin'], function ($routes) {
-    $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
-    $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
-    $routes->post('/api/auth', 'Api\Authentication::login');
-});
+// $routes->group('', ['filter' => 'admin'], function ($routes) {
+//     $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
+//     $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
+//     $routes->post('/api/auth', 'Api\Authentication::login');
+// });
 
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('api/user', 'Api\UserController::index');
