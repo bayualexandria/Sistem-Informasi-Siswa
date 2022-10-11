@@ -34,28 +34,28 @@ $routes->setAutoRoute(true);
 // $routes->get('/', 'Home::index');
 
 // Frontend
-$routes->get('/', 'AuthenticationController::login');
-$routes->post('/auth', 'AuthenticationController::attemptLogin');
-$routes->post('/logout', 'AuthenticationController::logout');
+// $routes->get('/', 'Api\Authentication::login');
+
+// $routes->post('/login', 'Api\Authentication::login');
+// $routes->post('/logout', 'Api\Authentication::logout');
+// $routes->get('/data-users', 'Api\Authentication::index');
+
+// $routes->group('', ['filter' => 'siswa'], function ($routes) {
+//     $routes->get('/home', 'Frontend\HomeController::index');
+//     $routes->get('/mapel', 'Frontend\MapelController::index');
+//     $routes->get('/menu-profile', 'Frontend\HomeController::profile');
+//     $routes->get('/edit-profile', 'Frontend\ProfileController::index');
+//     $routes->put('/edit-profile', 'Frontend\ProfileController::update');
+//     $routes->get('/ubah-password', 'Frontend\ProfileController::password');
+//     $routes->put('/ubah-password', 'Frontend\ProfileController::ubahPassword');
+// });
+
 
 // Backend
 $routes->get('/auth-admin', 'AuthenticationController::admin');
 $routes->post('/auth-admin', 'AuthenticationController::attemptAdmin');
 $routes->post('/logout-admin', 'AuthenticationController::logoutAdmin');
 
-// Front-end
-
-$routes->group('', ['filter' => 'siswa'], function ($routes) {
-    $routes->get('/home', 'Frontend\HomeController::index');
-    $routes->get('/mapel', 'Frontend\MapelController::index');
-    $routes->get('/menu-profile', 'Frontend\HomeController::profile');
-    $routes->get('/edit-profile', 'Frontend\ProfileController::index');
-    $routes->put('/edit-profile', 'Frontend\ProfileController::update');
-    $routes->get('/ubah-password', 'Frontend\ProfileController::password');
-    $routes->put('/ubah-password', 'Frontend\ProfileController::ubahPassword');
-});
-
-// Back-end
 $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/dashboard', 'Backend\DashboardController::index');
     $routes->get('/profile', 'Backend\DashboardController::profile');
@@ -159,9 +159,14 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 //     $routes->post('/api/auth', 'Api\Authentication::login');
 // });
 
-$routes->group('', ['filter' => 'auth'], function ($routes) {
-    $routes->get('api/user', 'Api\UserController::index');
-    $routes->post('/user', 'Api\UserController::insert');
+
+$routes->group('api',function ($routes)
+{
+    $routes->post('login','Api\Authentication::login');
+    $routes->group('', ['filter' => 'auth'], function ($routes) {
+        $routes->get('api/user', 'Api\UserController::index');
+        $routes->post('/user', 'Api\UserController::insert');
+    });
 });
 /*
  * --------------------------------------------------------------------

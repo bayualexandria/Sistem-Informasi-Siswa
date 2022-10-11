@@ -40,5 +40,8 @@ class User extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-   
+    public function user($username)
+    {
+        return $this->table('users')->select('users.*,siswa.nama,siswa.jenis_kelamin,siswa.no_hp,siswa.alamat')->join('siswa', 'siswa.no_induk=users.username')->where('users.username', $username)->get();
+    }
 }

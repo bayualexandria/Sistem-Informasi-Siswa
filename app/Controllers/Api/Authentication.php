@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use App\Models\User;
+use App\Models\{User,Siswa,Kelas,Jurusan};
 use CodeIgniter\RESTful\ResourceController;
 use Firebase\JWT\JWT;
 
@@ -13,9 +13,19 @@ class Authentication extends ResourceController
     public function __construct()
     {
         $this->user = new User();
+        $this->siswa = new Siswa();
+        $this->kelas = new Kelas();
+        $this->jurusan = new Jurusan();
+    }
+
+    public function index()
+    {
+        $response = ['user' => $this->user->findAll(), 'message' => 'Data Berhasil di tampilkan'];
+        return $this->respondCreated($response);
     }
     public function login()
     {
+
         $rules = [
             'username' => [
                 'rules' => 'required|numeric|max_length[10]',
@@ -46,6 +56,9 @@ class Authentication extends ResourceController
         $password = $this->request->getVar('password');
 
         $user = $this->user->where('username', $username)->first();
+        $siswa = $this->siswa->where('no_induk', $user['username'])->first();
+        $kelas = $this->kelas->where('id', $siswa['kelas_id'])->first();
+        $jurusan = $this->jurusan->where('id', $kelas['id_jurusan'])->first();
 
         if (!$user) return $this->respond(['message' => 'User yang anda masukan belum terdaftar', 'status' => 401], 401);
         if (!password_verify($password, $user['password'])) return $this->respond(['message' => 'Password yang anda masukan salah!', 'status' => 401], 401);
@@ -60,7 +73,13 @@ class Authentication extends ResourceController
         ];
         $token = JWT::encode($payload, $key, 'HS256');
 
-        $response = ['user' => $user['username'], 'token' => $token, 'message' => 'Login berhasil'];
+        $response = ['user' => [
+            'no_induk' => $siswa['no_induk'],
+            'nama' => $siswa['nama'],
+            'no_hp' => $siswa['no_hp'],
+            'alamat' => $siswa['alamat'],
+            'kelas' => $kelas['kelas'] . '|' . $jurusan['jurusan']
+        ], 'token' => $token, 'message' => 'Login berhasil'];
         return $this->respondCreated($response);
     }
 }
