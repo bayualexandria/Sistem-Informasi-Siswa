@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import Modal from "../Modal/Modal";
 
-export default function Menu() {
-  const [show, setShow] = useState(false);
+export default function Menu({ show, setShow }) {
+  const [showLogout, setShowLogout] = useState(false);
+
+  const modalShow = () => {
+    setShow(false);
+    setShowLogout(!showLogout);
+    // Splitcing token and username
+    // let authentication = localStorage.getItem("authentication");
+    // const auth = authentication.split(",");
+    // console.log(auth[1]);
+  };
 
   const showMenu = () => {
     setShow(!show);
   };
 
   return (
-    <div >
+    <div>
+      <Modal setShow={setShowLogout} show={showLogout} />
       {show ? (
         <div
           className="fixed w-4/4 sm:w-3/4 md:2/4 lg:w-1/4  bottom-[60px]"
@@ -124,7 +135,7 @@ export default function Menu() {
                 <li>
                   <button
                     className="flex flex-row items-center text-xs font-bold gap-x-3 text-slate-500"
-                    id="logout"
+                    onClick={modalShow}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

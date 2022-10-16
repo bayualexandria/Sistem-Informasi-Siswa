@@ -1,3 +1,8 @@
-import Menu from "./components/Menu/Menu";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import App from "./src/App";
 
-export { Menu };
+if (document.getElementById("frontend")) {
+  const item = document.getElementById("frontend");
+  ReactDOM.render(<App />, item);
+}

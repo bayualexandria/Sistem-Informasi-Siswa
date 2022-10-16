@@ -13,6 +13,11 @@ class AuthenticationController extends BaseController
         $this->user = new User();
     }
 
+    public function index()
+    {
+        return view('frontend/index');
+    }
+
     public function login()
     {
         if (session()->get('username') && session()->get('status_id') == 3) {

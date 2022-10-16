@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use App\Models\{User,Siswa,Kelas,Jurusan};
+use App\Models\{User, Siswa, Kelas, Jurusan};
 use CodeIgniter\RESTful\ResourceController;
 use Firebase\JWT\JWT;
 
@@ -56,12 +56,12 @@ class Authentication extends ResourceController
         $password = $this->request->getVar('password');
 
         $user = $this->user->where('username', $username)->first();
-        $siswa = $this->siswa->where('no_induk', $user['username'])->first();
-        $kelas = $this->kelas->where('id', $siswa['kelas_id'])->first();
-        $jurusan = $this->jurusan->where('id', $kelas['id_jurusan'])->first();
 
         if (!$user) return $this->respond(['message' => 'User yang anda masukan belum terdaftar', 'status' => 401], 401);
         if (!password_verify($password, $user['password'])) return $this->respond(['message' => 'Password yang anda masukan salah!', 'status' => 401], 401);
+        $siswa = $this->siswa->where('no_induk', $user['username'])->first();
+        $kelas = $this->kelas->where('id', $siswa['kelas_id'])->first();
+        $jurusan = $this->jurusan->where('id', $kelas['id_jurusan'])->first();
 
         $key = env('JWT_SECRET');
         $iat = time();
