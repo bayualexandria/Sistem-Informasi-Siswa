@@ -35,7 +35,7 @@ class AuthFilter implements FilterInterface
         if (!$header) return Services::response()->setJSON(['mesage' => 'Token harus diisi'])->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         $token = explode(' ', $header)[1];
         $keyToken = explode(' ', $header)[0];
-        if ($keyToken !== 'JWT') return Services::response()->setJSON(['mesage' => 'Key yang anda masukan salah'])->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
+        if ($keyToken !== env('JWT_SECRET')) return Services::response()->setJSON(['mesage' => 'Key yang anda masukan salah'])->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
 
         try {
             JWT::decode($token, new Key($key, 'HS256'));

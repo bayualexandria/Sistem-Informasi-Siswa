@@ -7143,11 +7143,11 @@ function Home() {
     // </div>
     (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
-        "class": "absolute flex items-center justify-center w-full h-screen bg-gradient-to-r from-sky-500/70 to-indigo-500/70",
+        className: "absolute flex items-center justify-center w-full h-screen bg-gradient-to-r from-sky-500/70 to-indigo-500/70",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
           src: "https://seeklogo.com/images/D/Departemen_Pendidikan_Nasional-logo-E2BD667284-seeklogo.com.png",
           alt: "",
-          "class": "fixed w-1/2 contrast-50 md:w-1/4 lg:w-1/6"
+          className: "fixed w-1/2 contrast-50 md:w-1/4 lg:w-1/6"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_Menu_Menu__WEBPACK_IMPORTED_MODULE_1__["default"], {
         show: showMenu,

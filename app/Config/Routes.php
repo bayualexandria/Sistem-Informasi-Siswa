@@ -164,7 +164,7 @@ $routes->group('api',function ($routes)
 {
     $routes->post('login','Api\Authentication::login');
     $routes->group('', ['filter' => 'auth'], function ($routes) {
-        $routes->get('api/user', 'Api\UserController::index');
+        $routes->get('user', 'Api\UserController::index');
         $routes->post('/user', 'Api\UserController::insert');
     });
 });
