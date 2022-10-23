@@ -71,7 +71,7 @@ class Authentication extends ResourceController
             'iat' => $iat,
             "email" => $user['username'],
             // "exp" => $iat + (24*60*60)
-            "exp" => $iat + (60 *60)
+            "exp" => $iat + (60 * 60)
         ];
         $token = JWT::encode($payload, $key, 'HS256');
 
