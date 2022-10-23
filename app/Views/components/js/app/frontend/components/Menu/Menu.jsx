@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import Modal from "../Modal/Modal";
 
 export default function Menu({ show, setShow }) {
@@ -111,9 +112,9 @@ export default function Menu({ show, setShow }) {
               <ul className="flex flex-col gap-3 px-5 py-6"></ul>
               <ul className="flex flex-col justify-end h-full px-5 py-6 gap-y-3">
                 <li>
-                  <a
-                    href="<?= base_url('/menu-profile'); ?>"
+                  <Link
                     className="flex items-center fexl-row gap-x-3"
+                    to="/profile"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +131,7 @@ export default function Menu({ show, setShow }) {
                       />
                     </svg>
                     Ubah Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <button

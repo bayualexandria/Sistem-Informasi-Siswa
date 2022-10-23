@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
+import Profile from "./pages/profile/Profile";
 
 export default function App() {
   return (
@@ -28,11 +29,12 @@ export default function App() {
             </PrivateRoute>
           }
         />
+       
         <Route
-          path="/home"
+          path="/profile"
           element={
             <PrivateRoute>
-              <Home />
+              <Profile />
             </PrivateRoute>
           }
         />

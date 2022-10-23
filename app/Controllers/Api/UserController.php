@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Api;
 
+use App\Models\Siswa;
 use App\Models\User;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -11,11 +12,13 @@ class UserController extends ResourceController
     public function __construct()
     {
         $this->user = new User();
+        $this->siswa = new Siswa();
     }
-    public function index()
+
+    public function index($username=null)
     {
-       
-        return $this->respond(['data' => $this->user->findAll(), 'message' => 'Data berhasil ditampilkan', 'status' => 200], 200);
+
+        return $this->respond(['data' => $this->siswa->where('no_induk', $username)->first(), 'message' => 'Data berhasil ditampilkan', 'status' => 200], 200);
     }
 
     public function insert()
