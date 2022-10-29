@@ -7364,6 +7364,16 @@ function Login() {
       loading = _useState8[0],
       setLoading = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState10 = _slicedToArray(_useState9, 2),
+      message = _useState10[0],
+      setMessage = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      error = _useState12[0],
+      setError = _useState12[1];
+
   var data = {
     username: nis,
     password: password
@@ -7377,8 +7387,10 @@ function Login() {
           switch (_context.prev = _context.next) {
             case 0:
               e.preventDefault();
-              _context.prev = 1;
-              _context.next = 4;
+              setMessage("");
+              setError("");
+              _context.prev = 3;
+              _context.next = 6;
               return fetch("/api/login", {
                 method: "POST",
                 body: JSON.stringify(data),
@@ -7389,32 +7401,34 @@ function Login() {
                 return res.json();
               });
 
-            case 4:
+            case 6:
               response = _context.sent;
               setLoading(true);
               setTimeout(function () {
                 setLoading(false);
+                if (response.status === 400) return setMessage(response.message);
+                if (response.status === 401) return setError(response.message);
                 localStorage.setItem("authentication", [response.token, response.user.no_induk]);
                 return location.href = "/";
               }, 5000);
-              _context.next = 12;
+              _context.next = 14;
               break;
 
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](1);
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](3);
               console.log(_context.t0);
 
-            case 12:
+            case 14:
               console.log(data);
               setLoading(true);
 
-            case 14:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee, null, [[3, 11]]);
     }));
 
     return function onHandlerSubmit(_x) {
@@ -7427,94 +7441,112 @@ function Login() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "flex flex-row items-center justify-center h-screen px-10 gap-x-36 bg-slate-100",
+    className: "flex flex-col py-10 md:flex-row items-center justify-center h-screen px-10 gap-x-36 bg-slate-100",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "w-2/4 p-10 bg-white rounded-md shadow-md",
+      className: "md:w-2/4 p-10 bg-white rounded-md shadow-md",
       children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis dolorem deserunt reiciendis delectus provident odio quidem nesciunt alias nostrum ipsum est consectetur qui aliquam animi rerum eius dicta, quae illo saepe natus minus, dignissimos quia dolores nemo! Repellendus, explicabo aspernatur deleniti unde, quia at vel ipsam eos, similique eius corporis?"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "w-1/3 p-10 bg-white rounded-md shadow-md",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-        onSubmit: onHandlerSubmit,
-        className: "flex flex-col gap-y-5 ",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "flex flex-col py-2 gap-y-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-            htmlFor: "nis",
-            className: "text-base font-normal text-slate-500",
-            children: "No.Induk"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-            type: "text",
-            onChange: function onChange(e) {
-              return setNis(e.target.value);
-            },
-            className: "border border-blue-500 rounded-md shadow-md outline-none py-1.5 px-4 hover:ring hover:ring-blue-300"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "relative flex flex-col py-2 gap-y-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-            htmlFor: "nis",
-            className: "text-base font-normal text-slate-500",
-            children: "Password"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-            type: show ? "text" : "password",
-            onChange: function onChange(e) {
-              return setPassword(e.target.value);
-            },
-            className: "border border-blue-500 rounded-md shadow-md outline-none py-1.5 px-4 hover:ring hover:ring-blue-300"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            onClick: showPassword,
-            className: "absolute px-2 bg-white outline-none cursor-pointer right-2 bottom-4",
-            children: show ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
-              xmlns: "http://www.w3.org/2000/svg",
-              fill: "none",
-              viewBox: "0 0 24 24",
-              strokeWidth: 1.5,
-              stroke: "currentColor",
-              className: "w-6 h-6 text-cyan-500",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
-              })
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
-              xmlns: "http://www.w3.org/2000/svg",
-              fill: "none",
-              viewBox: "0 0 24 24",
-              strokeWidth: 1.5,
-              stroke: "currentColor",
-              className: "w-6 h-6 text-cyan-500",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "w-1/3 flex flex-col gap-y-5",
+      children: [error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "py-3  flex justify-center items-center rounded-md shadow-md bg-rose-400",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          className: "text-sm font-bold text-white",
+          children: error
+        })
+      }) : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "p-10 bg-white rounded-md shadow-md",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+          onSubmit: onHandlerSubmit,
+          className: "flex flex-col gap-y-5 ",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "flex flex-col gap-y-2",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "nis",
+              className: "text-base font-normal text-slate-500",
+              children: "No.Induk"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              onChange: function onChange(e) {
+                return setNis(e.target.value);
+              },
+              className: "border border-blue-500 rounded-md shadow-md outline-none py-1.5 px-4 hover:ring hover:ring-blue-300"
+            }), message.username ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              className: "text-red-500 text-xs",
+              children: message.username
+            }) : ""]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "flex flex-col gap-y-2",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "nis",
+              className: "text-base font-normal text-slate-500",
+              children: "Password"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "relative flex flex-col py-2 gap-y-2",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                type: show ? "text" : "password",
+                onChange: function onChange(e) {
+                  return setPassword(e.target.value);
+                },
+                className: "border border-blue-500 rounded-md shadow-md outline-none py-1.5 px-4 hover:ring hover:ring-blue-300"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                onClick: showPassword,
+                className: "absolute px-2 bg-white outline-none cursor-pointer right-2 bottom-4",
+                children: show ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  strokeWidth: 1.5,
+                  stroke: "currentColor",
+                  className: "w-6 h-6 text-cyan-500",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    d: "M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                  })
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  strokeWidth: 1.5,
+                  stroke: "currentColor",
+                  className: "w-6 h-6 text-cyan-500",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    d: "M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  })]
+                })
               })]
-            })
+            }), message.password ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              className: "text-red-500 text-xs",
+              children: message.password
+            }) : ""]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            type: "submit",
+            className: "p-2 text-base font-bold text-white transition duration-200 rounded-full shadow-md outline-none bg-cyan-500 hover:ring hover:ring-cyan-300 hover:bg-white hover:text-cyan-500",
+            children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "flex flex-row items-center justify-center gap-x-2",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                strokeWidth: 1.5,
+                stroke: "currentColor",
+                className: "w-5 h-5 animate-spin",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  d: "M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                })
+              }), "Loading..."]
+            }) : "Login"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          type: "submit",
-          className: "p-2 text-base font-bold text-white transition duration-200 rounded-full shadow-md outline-none bg-cyan-500 hover:ring hover:ring-cyan-300 hover:bg-white hover:text-cyan-500",
-          children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "flex flex-row items-center justify-center gap-x-2",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
-              xmlns: "http://www.w3.org/2000/svg",
-              fill: "none",
-              viewBox: "0 0 24 24",
-              strokeWidth: 1.5,
-              stroke: "currentColor",
-              className: "w-5 h-5 animate-spin",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-              })
-            }), "Loading..."]
-          }) : "Login"
-        })]
-      })
+        })
+      })]
     })]
   });
 }
