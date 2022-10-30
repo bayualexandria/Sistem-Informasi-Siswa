@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -29,7 +30,7 @@ export default function App() {
             </PrivateRoute>
           }
         />
-       
+
         <Route
           path="/profile"
           element={
@@ -44,7 +45,7 @@ export default function App() {
 }
 
 function PrivateRoute({ children }) {
-  const isAuthenticated = localStorage.getItem("authentication");
+  const isAuthenticated = Cookies.get("authentication");
   if (isAuthenticated) {
     return children;
   }
@@ -52,7 +53,7 @@ function PrivateRoute({ children }) {
 }
 
 function UnAthenticated({ children }) {
-  const isAuthenticated = localStorage.getItem("authentication");
+  const isAuthenticated = Cookies.get("authentication");
   if (!isAuthenticated) {
     return children;
   }

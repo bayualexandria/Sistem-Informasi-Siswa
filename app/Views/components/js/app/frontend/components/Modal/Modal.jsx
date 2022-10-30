@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 
 function Modal({ setShow, show }) {
@@ -10,7 +11,7 @@ function Modal({ setShow, show }) {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
-      localStorage.removeItem("authentication");
+      Cookies.remove("authentication");
       setLoading(false);
       setShow(false);
       return (location.href = "/");

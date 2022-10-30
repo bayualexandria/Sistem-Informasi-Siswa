@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Navigate, Route } from "react-router-dom";
+import Cookies from "js-cookie";
+import React, { useState } from "react";
 import Network from "../../../components/Network/Network";
 
 function Login() {
@@ -14,6 +14,7 @@ function Login() {
 
   const onHandlerSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     setMessage("");
     setError("");
     try {
@@ -25,21 +26,33 @@ function Login() {
         },
       }).then((res) => res.json());
       setLoading(true);
+      console.log(response);
       setTimeout(() => {
         setLoading(false);
-        if (response.status === 400) return setMessage(response.message);
-        if (response.status === 401) return setError(response.message);
-        localStorage.setItem("authentication", [
-          response.token,
-          response.user.no_induk,
-        ]);
+        if (response.status === 400) {
+          setMessage(response.message);
+          setTimeout(() => {
+            setMessage("");
+          }, 8000);
+        }
+        if (response.status === 401) {
+          setError(response.message);
+          setTimeout(() => {
+            setError("");
+          }, 8000);
+        }
+        var date = new Date();
+        date.setTime(date.getTime() + 60 * 60 * 1000);
+        Cookies.set(
+          "authentication",
+          [response.token, response.user.no_induk],
+          { expires: date }
+        );
         return (location.href = "/");
       }, 5000);
     } catch (e) {
       console.log(e);
     }
-    console.log(data);
-    setLoading(true);
   };
 
   const showPassword = () => {
@@ -50,7 +63,7 @@ function Login() {
     <>
       <Network />
       <div className="flex flex-col py-10 md:flex-row items-center justify-center h-screen px-10 gap-x-36 bg-slate-100">
-        <div className="md:w-2/4 p-10 bg-white rounded-md shadow-md">
+        <div className="md:w-2/4 md:block hidden p-10 bg-white rounded-md shadow-md">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
           dolorem deserunt reiciendis delectus provident odio quidem nesciunt
           alias nostrum ipsum est consectetur qui aliquam animi rerum eius
@@ -59,10 +72,12 @@ function Login() {
           eos, similique eius corporis?
         </div>
 
-        <div className="w-1/3 flex flex-col gap-y-5">
+        <div className="md:w-1/3 flex flex-col gap-y-5">
           {error ? (
-            <div className="py-3  flex justify-center items-center rounded-md shadow-md bg-rose-400">
-              <p className="text-sm font-bold text-white">{error}</p>
+            <div className="py-3 flex justify-center items-center rounded-md shadow-md bg-rose-400 ">
+              <p className="text-sm font-bold text-white animate-pulse">
+                {error}
+              </p>
             </div>
           ) : (
             ""

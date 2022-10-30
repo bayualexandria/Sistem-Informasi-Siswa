@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Menu from "../../components/Menu/Menu";
 
@@ -6,7 +7,7 @@ function Taskbar() {
   const [siswa, setSiswa] = useState([]);
 
   const getUserData = async () => {
-    let authentication = localStorage.getItem("authentication");
+    let authentication = Cookies.get("authentication");
     const auth = authentication.split(",");
     try {
       let response = await fetch(`/api/user/${auth[1]}`, {
