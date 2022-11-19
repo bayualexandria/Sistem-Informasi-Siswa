@@ -7550,20 +7550,34 @@ function Login() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Network_Network__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "flex flex-col py-10 md:flex-row items-center justify-center h-screen px-10 gap-x-36 bg-slate-100",
+      className: "flex flex-col md:flex-row h-screen bg-slate-100 md:bg-primary ",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "md:w-2/4 md:block hidden p-10 bg-white rounded-md shadow-md",
-        children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis dolorem deserunt reiciendis delectus provident odio quidem nesciunt alias nostrum ipsum est consectetur qui aliquam animi rerum eius dicta, quae illo saepe natus minus, dignissimos quia dolores nemo! Repellendus, explicabo aspernatur deleniti unde, quia at vel ipsam eos, similique eius corporis?"
+        className: "md:w-3/5 md:flex hidden bg-white shadow-md h-full md:justify-center md:items-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+          src: "/assets/svg/studying.svg",
+          alt: "bg",
+          className: "w-2/3"
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "md:w-1/3 flex flex-col gap-y-5",
-        children: [error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "py-3 flex justify-center items-center rounded-md shadow-md bg-rose-400 ",
+        className: "md:w-2/5 w-full h-screen flex flex-col gap-y-5 justify-center items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: "/assets/logo-pendidikan.png",
+            alt: "logo",
+            className: "w-12 h-12 text-center hidden md:block"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+          className: "text-white font-extrabold text-2xl",
+          children: "Sistem Informasi Siswa"
+        }), error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "py-3 flex justify-center items-center rounded-md shadow-md bg-slate-100 px-5",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-            className: "text-sm font-bold text-white animate-pulse",
+            className: "text-sm font-bold text-rose-400 animate-pulse",
             children: error
           })
         }) : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "p-10 bg-white rounded-md shadow-md",
+          className: "md:p-10 bg-white rounded-md shadow-md px-5",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
             onSubmit: onHandlerSubmit,
             className: "flex flex-col gap-y-5 ",

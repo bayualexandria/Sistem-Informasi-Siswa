@@ -62,27 +62,32 @@ function Login() {
   return (
     <>
       <Network />
-      <div className="flex flex-col py-10 md:flex-row items-center justify-center h-screen px-10 gap-x-36 bg-slate-100">
-        <div className="md:w-2/4 md:block hidden p-10 bg-white rounded-md shadow-md">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-          dolorem deserunt reiciendis delectus provident odio quidem nesciunt
-          alias nostrum ipsum est consectetur qui aliquam animi rerum eius
-          dicta, quae illo saepe natus minus, dignissimos quia dolores nemo!
-          Repellendus, explicabo aspernatur deleniti unde, quia at vel ipsam
-          eos, similique eius corporis?
+      <div className="flex flex-col md:flex-row h-screen bg-slate-100 md:bg-primary ">
+        <div className="md:w-3/5 md:flex hidden bg-white shadow-md h-full md:justify-center md:items-center">
+          <img src="/assets/svg/studying.svg" alt="bg" className="w-2/3" />
         </div>
 
-        <div className="md:w-1/3 flex flex-col gap-y-5">
+        <div className="md:w-2/5 w-full h-screen flex flex-col gap-y-5 justify-center items-center">
+          <div className="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center">
+            <img
+              src="/assets/logo-pendidikan.png"
+              alt="logo"
+              className="w-12 h-12 text-center hidden md:block"
+            />
+          </div>
+          <h1 className="text-white font-extrabold text-2xl">
+            Sistem Informasi Siswa
+          </h1>
           {error ? (
-            <div className="py-3 flex justify-center items-center rounded-md shadow-md bg-rose-400 ">
-              <p className="text-sm font-bold text-white animate-pulse">
+            <div className="py-3 flex justify-center items-center rounded-md shadow-md bg-slate-100 px-5">
+              <p className="text-sm font-bold text-rose-400 animate-pulse">
                 {error}
               </p>
             </div>
           ) : (
             ""
           )}
-          <div className="p-10 bg-white rounded-md shadow-md">
+          <div className="md:p-10 bg-white rounded-md shadow-md px-5">
             <form onSubmit={onHandlerSubmit} className="flex flex-col gap-y-5 ">
               <div className="flex flex-col gap-y-2">
                 <label
