@@ -141,7 +141,7 @@ function Profile() {
                     Loading...
                   </div>
                 ) : (
-                  "Login"
+                  "Ubah profile"
                 )
               }
               type="submit"
