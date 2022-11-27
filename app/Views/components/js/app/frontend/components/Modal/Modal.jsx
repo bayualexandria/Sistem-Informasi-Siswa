@@ -23,7 +23,7 @@ function Modal({ setShow, show }) {
         show ? "block" : "hidden"
       } flex flex-row items-center justify-center h-screen bg-slate-300/40 absolute w-full`}
     >
-      <div className="w-1/3 p-5 transition duration-200 transform bg-white rounded-lg shadow-md">
+      <div className="md:w-1/3 w-full p-5 transition duration-200 transform bg-white rounded-lg shadow-md">
         {loading ? (
           <div className="flex flex-row items-center justify-center gap-x-3">
             <svg
@@ -61,7 +61,7 @@ function Modal({ setShow, show }) {
               />
             </svg>
 
-            <h1 className="text-base font-bold text-slate-500">
+            <h1 className="text-base font-bold text-slate-500 text-center">
               Apakah anda ingin keluar dari sistem
             </h1>
             <div className="flex flex-row px-10 py-5 gap-x-10">

@@ -15,49 +15,51 @@ class UserController extends ResourceController
         $this->siswa = new Siswa();
     }
 
-    public function index($username=null)
+    public function index($username = null)
     {
 
         return $this->respond(['data' => $this->siswa->where('no_induk', $username)->first(), 'message' => 'Data berhasil ditampilkan', 'status' => 200], 200);
     }
 
-    public function insert()
+    public function updateUser($username)
     {
-        $rules = [
-            'no_induk' => [
-                'rules' => 'required|numeric|min_length[10]|max_length[10]|is_unique[siswa.no_induk]',
-                'errors' => [
-                    'required' => 'No. Induk harus diisi',
-                    'numeric' => 'Yang anda masukan bukan No. Induk',
-                    'max_length' => 'No. Induk yang anda masukan melebihi 10 karakter',
-                    'min_length' => 'No. Induk yang anda masukan kurang dari 10 karakter',
-                    'is_unique' => 'No. Induk yang anda masukan sudah terdaftar'
-                ]
-            ],
-            'nama' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama harus diisi',
-                ]
-            ],
-            // 'image_profile' => [
-            //     'rules' => 'uploaded[image_profile]|max_size[image_profile,1024]|is_image[image_profile]|mime_in[image_profile,image/jpg,image/jpeg,image/png]',
-            //     'errors' => [
-            //         'uploaded' => 'File gambar tidak boleh kosong',
-            //         'max_size' => 'File gambar tidak boleh lebih dari 1MB',
-            //         'is_image' => 'File gambar harus berupa gambar',
-            //         'mime_in' => 'File gambar harus berupa gambar'
-            //     ]
-            // ],
 
+        $file = $this->request->getFile('image_profile');
+
+        $siswa = $this->siswa->where('no_induk', $username)->first();
+
+
+        if (!$file) {
+            $image = $siswa['image_profile'];
+        } else {
+            if (!base_url('assets/img/profile/siswa/' . $siswa['image_profile'])) {
+                $namaImage = $this->request->getFile('image_profile')->getRandomName();
+                $this->request->getFile('image_profile')->move('assets/img/profile/siswa/' . $this->request->getVar('no_induk'), $namaImage);
+                $image = $this->request->getVar('no_induk') . '/' . $namaImage;
+            }
+            // generate nama file random
+            $namaImage = $file->getRandomName();
+            // pindahkan gambar
+            unlink('assets/img/profile/siswa/'.$siswa['image_profile']);
+            $file->move('assets/img/profile/siswa/', $username . '/' . $namaImage);
+            $image = $username . '/' . $namaImage;
+        }
+        $data = [
+            'no_induk' => $siswa['no_induk'],
+            'nama' => $this->request->getVar('nama') ? $this->request->getVar('nama') : $siswa['nama'],
+            'no_hp' => $this->request->getVar('no_hp') ? $this->request->getVar('no_hp') : $siswa['no_hp'],
+            'image_profile' => $image,
+            'jenis_kelamin' => $siswa['jenis_kelamin'],
+            'user_id' => $siswa['user_id'],
+            'kelas_id' => $siswa['kelas_id'],
+            'alamat' => $this->request->getVar('alamat') ? $this->request->getVar('alamat') : $siswa['alamat']
         ];
-        if (!$this->validate($rules)) return $this->respond(
-            [
-                'message' => $this->validator->getErrors()
-            ],
-            400,
+        $this->siswa->update(
+            $siswa['id'],
+            $data
+        );
 
-        )->getJSON();
-        return $this->respond(['message' => 'Ok'], 200);
+
+        return $this->respond(['data' => $data, 'message' => 'Data siswa berhasil di perbaharui'], 200);
     }
 }

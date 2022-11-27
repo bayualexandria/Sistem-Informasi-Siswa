@@ -161,14 +161,14 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
 
 // Rest Full API
-$routes->group('api',function ($routes)
-{
-    $routes->post('login','Api\Authentication::login');
+$routes->group('api', function ($routes) {
+    $routes->post('login', 'Api\Authentication::login');
     $routes->group('', ['filter' => 'auth'], function ($routes) {
 
         // User
         $routes->get('user/(:any)', 'Api\UserController::index/$1');
-        $routes->put('user/(:any)', 'Api\UserController::update/$1');
+        $routes->post('user/(:any)', 'Api\UserController::updateUser/$1');
+    
     });
 });
 /*
