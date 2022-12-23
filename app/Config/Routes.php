@@ -153,11 +153,11 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
 // RestFull API
 // Back-end
-// $routes->group('', ['filter' => 'admin'], function ($routes) {
-//     $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
-//     $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
-//     $routes->post('/api/auth', 'Api\Authentication::login');
-// });
+$routes->group('', ['filter' => 'admin'], function ($routes) {
+    $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
+    $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
+    $routes->post('/api/auth', 'Api\Authentication::login');
+});
 
 
 // Rest Full API

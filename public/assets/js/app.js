@@ -6846,9 +6846,11 @@ function Upload(_ref) {
       type: "file"
     }, rest), {}, {
       className: "file:rounded-full file:bg-white file:border file:border-sky-200 file:text-primary file:text-sm file:font-bold"
-    })), imageProfile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-      src: imageProfile,
-      className: "md:w-1/4 w-1/2 rounded-md"
+    })), imageProfile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "md:w-40 md:h-40 w-20 h-20 rounded-full ring ring-sky-300 overflow-hidden flex justify-center items-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+        src: imageProfile
+      })
     })]
   });
 }
