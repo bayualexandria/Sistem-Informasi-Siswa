@@ -7,7 +7,7 @@ use App\Models\{Siswa, User};
 
 class SiswaController extends BaseController
 {
-
+    public $siswa, $user;
     public function __construct()
     {
         $this->siswa = new Siswa();

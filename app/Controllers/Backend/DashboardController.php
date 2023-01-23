@@ -7,7 +7,8 @@ use App\Models\{Guru, Kelas, Mapel, Semester, Siswa, User};
 
 class DashboardController extends BaseController
 {
-    
+    public $guru, $admin, $siswa, $semester, $kelas, $mapel;
+
     public function __construct()
     {
         $this->guru = new Guru();

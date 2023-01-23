@@ -7,6 +7,7 @@ use App\Models\User;
 
 class AuthenticationController extends BaseController
 {
+    public $user;
 
     public function __construct()
     {

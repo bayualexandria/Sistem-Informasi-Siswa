@@ -10,6 +10,7 @@ use Firebase\JWT\JWT;
 
 class Authentication extends ResourceController
 {
+    public $user, $siswa, $kelas, $jurusan;
     public function __construct()
     {
         $this->user = new User();

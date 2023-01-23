@@ -7,6 +7,7 @@ use App\Models\Semester;
 
 class SemesterController extends BaseController
 {
+    public $semester;
     public function __construct()
     {
         $this->semester = new Semester();

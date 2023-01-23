@@ -7,6 +7,7 @@ use App\Models\{Guru, Jurusan, Kelas, Mapel, Siswa};
 
 class KelasController extends BaseController
 {
+    public $kelas, $jurusan, $guru, $siswa,$mapel;
 
     public function __construct()
     {

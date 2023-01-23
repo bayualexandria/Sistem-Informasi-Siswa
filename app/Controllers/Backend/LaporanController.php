@@ -9,6 +9,7 @@ use \Mpdf\Mpdf;
 
 class LaporanController extends BaseController
 {
+    public $siswa, $jurusan, $kelas, $guru, $mpdf, $mapel, $nilaiRataRata;
     public function __construct()
     {
         $this->siswa = new Siswa();

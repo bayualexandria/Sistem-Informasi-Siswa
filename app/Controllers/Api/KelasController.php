@@ -7,6 +7,7 @@ use CodeIgniter\RESTful\ResourceController;
 
 class KelasController extends ResourceController
 {
+    public $siswa,$kelas;
 
     public function __construct()
     {

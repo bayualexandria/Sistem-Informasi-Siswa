@@ -28,6 +28,7 @@ class BaseController extends Controller
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
+    public $session, $validation;
 
     /**
      * An array of helpers to be loaded automatically upon
@@ -51,6 +52,7 @@ class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         $this->session = Services::session();
         $this->validation = Services::validation();
+
         // get_cookie('remember');
     }
 }

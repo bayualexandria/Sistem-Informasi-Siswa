@@ -34,9 +34,9 @@ function Profile() {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    getUserData();
-  }, []);
+    useEffect(() => {
+      getUserData();
+    }, []);
 
   const [nama, setNama] = useState("");
   const [noHp, setNoHp] = useState("");

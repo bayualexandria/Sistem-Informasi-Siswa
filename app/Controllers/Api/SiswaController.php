@@ -7,6 +7,7 @@ use CodeIgniter\RESTful\ResourceController;
 
 class SiswaController extends ResourceController
 {
+    public $siswa;
 
     public function __construct()
     {

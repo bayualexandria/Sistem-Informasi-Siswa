@@ -7,6 +7,7 @@ use App\Models\{Guru, Mapel, Jurusan, Kelas, NilaiMapelSiswa, NilaiRataRata, Sem
 
 class MapelController extends BaseController
 {
+    public $mapel, $guru, $kelas, $jurusan, $siswa, $semester, $nilaiRataRata, $nilaiMapelSiswa;
 
     public function __construct()
     {

@@ -8,6 +8,7 @@ use App\Models\{User, Guru};
 class GuruController extends BaseController
 {
 
+    public $guru, $user;
     public function __construct()
     {
         $this->guru = new Guru();

@@ -6,6 +6,7 @@ use App\Models\Siswa;
 use App\Models\User;
 use CodeIgniter\RESTful\ResourceController;
 
+use function PHPUnit\Framework\isEmpty;
 
 class UserController extends ResourceController
 {
@@ -23,7 +24,6 @@ class UserController extends ResourceController
 
     public function updateUser($username)
     {
-
         $file = $this->request->getFile('image_profile');
 
         $siswa = $this->siswa->where('no_induk', $username)->first();
@@ -40,7 +40,7 @@ class UserController extends ResourceController
             // generate nama file random
             $namaImage = $file->getRandomName();
             // pindahkan gambar
-            unlink('assets/img/profile/siswa/'.$siswa['image_profile']);
+            unlink('assets/img/profile/siswa/' . $siswa['image_profile']);
             $file->move('assets/img/profile/siswa/', $username . '/' . $namaImage);
             $image = $username . '/' . $namaImage;
         }
