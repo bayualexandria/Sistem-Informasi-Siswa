@@ -38,7 +38,7 @@ export default function SearchBoxSiswa(props) {
         })
         .then((res) => res.data);
       console.log(response);
-      if (props.statusId === 1) {
+      if (props.statusId == 1) {
         return (location.href = "/kelas/siswa/" + props.kelas);
       }
       return (location.href = "/siswa/wali-kelas/" + props.kelas);

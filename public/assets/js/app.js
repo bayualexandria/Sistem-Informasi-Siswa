@@ -6569,7 +6569,7 @@ function SearchBoxSiswa(props) {
               response = _context2.sent;
               console.log(response);
 
-              if (!(props.statusId === 1)) {
+              if (!(props.statusId == 1)) {
                 _context2.next = 7;
                 break;
               }

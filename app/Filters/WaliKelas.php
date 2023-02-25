@@ -34,7 +34,7 @@ class WaliKelas implements FilterInterface
         if (!$wali) {
             return redirect()->to('/dashboard');
         }
-        return;
+        return true;
     }
 
     /**
