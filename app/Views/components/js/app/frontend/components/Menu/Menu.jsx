@@ -30,8 +30,9 @@ export default function Menu({ show, setShow }) {
           <div className="grid grid-cols-2 text-[10px] font-bold divide-x rounded-md shadow-md md:text-xs bg-light-primary divide-slate-400 h-80 text-slate-500">
             <ul className="flex flex-col gap-3 px-5 py-6">
               <li>
-                <a
-                  href="<?= base_url('/mapel'); ?>"
+                <Link
+                  to="/mapel"
+                  
                   className="flex flex-row items-center gap-x-3"
                 >
                   <svg
@@ -49,7 +50,7 @@ export default function Menu({ show, setShow }) {
                     />
                   </svg>
                   Jadwal Mapel
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="" className="flex flex-row items-center gap-x-3">

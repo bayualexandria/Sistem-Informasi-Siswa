@@ -60,7 +60,17 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/dashboard', 'Backend\DashboardController::index');
     $routes->get('/profile', 'Backend\DashboardController::profile');
     $routes->put('/profile', 'Backend\DashboardController::updateProfile');
+    // CRUD Nilai Mapel Siswa
 
+    $routes->group('nilai-mapel-siswa', function ($routes) {
+        $routes->post('(:any)', 'Backend\MapelController::insertNilaiMapelSiswa/$1');
+        $routes->put('(:any)', 'Backend\MapelController::updateNilaiMapelSiswa/$1');
+    });
+    // CRUD Nilai Rata Rata
+    $routes->group('nilai-rata-rata', function ($routes) {
+        $routes->post('(:any)', 'Backend\MapelController::insertNilaiRataRata/$1');
+        $routes->put('(:any)', 'Backend\MapelController::updateNilaiRataRata/$1');
+    });
     // Access Admin And Wali Kelas
     $routes->group('', ['filter' => ['wali-kelas', 'role-admin']], function ($routes) {
         $routes->post('/kelas', 'Backend\KelasController::insert');
@@ -88,19 +98,6 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
             $routes->put('(:any)', 'Backend\MapelController::update/$1');
             $routes->post('/', 'Backend\MapelController::insert');
             $routes->delete('(:any)', 'Backend\MapelController::delete/$1');
-        });
-
-        // CRUD Nilai Rata Rata
-        $routes->group('nilai-rata-rata', function ($routes) {
-            $routes->post('(:any)', 'Backend\MapelController::insertNilaiRataRata/$1');
-            $routes->put('(:any)', 'Backend\MapelController::updateNilaiRataRata/$1');
-        });
-
-        // CRUD Nilai Mapel Siswa
-
-        $routes->group('nilai-mapel-siswa', function ($routes) {
-            $routes->post('(:any)', 'Backend\MapelController::insertNilaiMapelSiswa/$1');
-            $routes->put('(:any)', 'Backend\MapelController::updateNilaiMapelSiswa/$1');
         });
 
         // CRUD Data Kelas
@@ -151,13 +148,13 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/laporan-data-nilai-siswa/(:any)', 'Backend\LaporanController::laporanDataNilaiSiswa/$1');
 });
 
-// RestFull API
-// Back-end
-$routes->group('', ['filter' => 'admin'], function ($routes) {
-    $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
-    $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
-    $routes->post('/api/auth', 'Api\Authentication::login');
-});
+// // RestFull API
+// // Back-end
+// $routes->group('', ['filter' => 'admin'], function ($routes) {
+//     $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
+//     $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
+//     $routes->post('/api/auth', 'Api\Authentication::login');
+// });
 
 
 // Rest Full API
@@ -168,7 +165,6 @@ $routes->group('api', function ($routes) {
         // User
         $routes->get('user/(:any)', 'Api\UserController::index/$1');
         $routes->post('user/(:any)', 'Api\UserController::updateUser/$1');
-    
     });
 });
 /*

@@ -7,7 +7,7 @@ use App\Models\{Guru, Jurusan, Kelas, Mapel, Siswa};
 
 class KelasController extends BaseController
 {
-    public $kelas, $jurusan, $guru, $siswa,$mapel;
+    public $kelas, $jurusan, $guru, $siswa, $mapel;
 
     public function __construct()
     {
@@ -111,6 +111,7 @@ class KelasController extends BaseController
         else
             $siswa = $this->siswa->getSiswaByKelas($id)->asObject();
         $kelas = $this->kelas->where('id', $id)->asObject()->first();
+
         return view('backend/pages/kelas/siswa', [
             'kelas' => $kelas,
             'siswa' => $siswa->paginate(5, 'pagination'),

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
+import Mapel from "./pages/mapel/Mapel";
 import Profile from "./pages/profile/Profile";
 
 export default function App() {
@@ -36,6 +37,15 @@ export default function App() {
           element={
             <PrivateRoute>
               <Profile />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/mapel"
+          element={
+            <PrivateRoute>
+              <Mapel />
             </PrivateRoute>
           }
         />

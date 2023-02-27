@@ -198,6 +198,7 @@ class MapelController extends BaseController
 
     public function insertNilaiRataRata($id)
     {
+        
         $rules = [
             'nilai_rata_rata' => [
                 'rules' => 'required',
@@ -272,9 +273,8 @@ class MapelController extends BaseController
             'id_semester' => $semester['id']
         ];
 
-        dd($simpan);
         $this->nilaiMapelSiswa->save($simpan);
-        // return redirect()->to('/mata-pelajaran/detail/' . $mapel)->with('success', 'Nilai berhasil ditambahkan');
+        return redirect()->to('/mata-pelajaran/detail/' . $mapel)->with('success', 'Nilai berhasil ditambahkan');
     }
 
     public function updateNilaiMapelSiswa($id)
