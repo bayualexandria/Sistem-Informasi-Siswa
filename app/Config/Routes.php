@@ -165,6 +165,9 @@ $routes->group('api', function ($routes) {
         // User
         $routes->get('user/(:any)', 'Api\UserController::index/$1');
         $routes->post('user/(:any)', 'Api\UserController::updateUser/$1');
+
+        // Mapel
+        $routes->get('mapel/(:any)', 'Api\MapelController::index/$1');
     });
 });
 /*

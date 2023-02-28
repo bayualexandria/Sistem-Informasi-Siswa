@@ -8,7 +8,7 @@ function Mapel() {
     <div>
       <Watermark />
       <div className="absolute w-full md:px-10 md:pt-5 md:pb-20 p-2 h-full">
-        <div className="relative w-full rounded-lg shadow-md  bg-primary/80 px-2 py-10 md:px-5 md:py-20 h-full text-white">
+        <div className="relative md:w-1/2 w-full rounded-lg shadow-md  bg-primary/80 px-2 py-10 md:px-5 md:py-20 h-full text-white">
           <div className="absolute top-1 right-1 md:top-3 md:right-3">
             <Link
               to="/"

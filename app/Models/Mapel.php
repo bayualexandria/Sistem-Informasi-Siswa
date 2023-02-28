@@ -101,4 +101,13 @@ class Mapel extends Model
             ->where('kelas_id', $id)
             ->orderBy('hari', 'ASC')->get()->getResultObject();
     }
+
+    public function getDataMapelApi($kelas)
+    {
+        return $this->db->table('mapel')
+            ->select('DISTINCT(mapel.hari),mapel.*,guru.nama')
+            ->join('guru', 'guru.id=mapel.guru_id')
+            ->where('mapel.kelas_id', $kelas)
+            ->orderBy('hari', 'ASC')->get()->getResultObject();
+    }
 }

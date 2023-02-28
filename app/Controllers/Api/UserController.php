@@ -10,6 +10,8 @@ use function PHPUnit\Framework\isEmpty;
 
 class UserController extends ResourceController
 {
+    public $siswa, $user;
+
     public function __construct()
     {
         $this->user = new User();
