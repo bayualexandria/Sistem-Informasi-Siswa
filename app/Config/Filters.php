@@ -25,7 +25,6 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'admin' => AdminAuth::class,
-        'siswa' => Authentication::class,
         'role-admin' => RoleAdmin::class,
         'auth' => AuthFilter::class,
         'cors' => Cors::class,

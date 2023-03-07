@@ -48,6 +48,7 @@ function Login() {
           [response.token, response.user.no_induk],
           { expires: date }
         );
+        
         return (location.href = "/");
       }, 5000);
     } catch (e) {

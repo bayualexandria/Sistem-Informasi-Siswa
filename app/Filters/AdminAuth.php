@@ -26,7 +26,7 @@ class AdminAuth implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (session()->get('username') && session()->get('status_id') == 3) {
-            return redirect()->to('/');
+            return redirect()->to('/dashboard');
         } else if (!session()->get('username')) {
             return redirect()->to('/auth-admin');
         }

@@ -24,10 +24,11 @@ class RoleAdmin implements FilterInterface
      *
      * @return mixed
      */
+    public $user;
     public function before(RequestInterface $request, $arguments = null)
     {
         $username = session()->get('username');
-
+        
         if (!$username)
             return redirect()->to('/auth-admin');
         $this->user = new User();

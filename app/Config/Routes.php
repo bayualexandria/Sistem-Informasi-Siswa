@@ -33,24 +33,6 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 
-// Frontend
-$routes->get('/', 'AuthenticationController::index');
-
-// $routes->post('/login', 'Api\Authentication::login');
-// $routes->post('/logout', 'Api\Authentication::logout');
-// $routes->get('/data-users', 'Api\Authentication::index');
-
-// $routes->group('', ['filter' => 'siswa'], function ($routes) {
-//     $routes->get('/home', 'Frontend\HomeController::index');
-//     $routes->get('/mapel', 'Frontend\MapelController::index');
-//     $routes->get('/menu-profile', 'Frontend\HomeController::profile');
-//     $routes->get('/edit-profile', 'Frontend\ProfileController::index');
-//     $routes->put('/edit-profile', 'Frontend\ProfileController::update');
-//     $routes->get('/ubah-password', 'Frontend\ProfileController::password');
-//     $routes->put('/ubah-password', 'Frontend\ProfileController::ubahPassword');
-// });
-
-
 // Backend
 $routes->get('/auth-admin', 'AuthenticationController::admin');
 $routes->post('/auth-admin', 'AuthenticationController::attemptAdmin');
@@ -60,18 +42,6 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/dashboard', 'Backend\DashboardController::index');
     $routes->get('/profile', 'Backend\DashboardController::profile');
     $routes->put('/profile', 'Backend\DashboardController::updateProfile');
-    // CRUD Nilai Mapel Siswa
-
-    $routes->group('nilai-mapel-siswa', function ($routes) {
-        $routes->post('(:any)', 'Backend\MapelController::insertNilaiMapelSiswa/$1');
-        $routes->put('(:any)', 'Backend\MapelController::updateNilaiMapelSiswa/$1');
-    });
-    // CRUD Nilai Rata Rata
-    $routes->group('nilai-rata-rata', function ($routes) {
-        $routes->post('(:any)', 'Backend\MapelController::insertNilaiRataRata/$1');
-        $routes->put('(:any)', 'Backend\MapelController::updateNilaiRataRata/$1');
-    });
-    // Access Admin And Wali Kelas
     $routes->group('', ['filter' => ['wali-kelas', 'role-admin']], function ($routes) {
         $routes->post('/kelas', 'Backend\KelasController::insert');
     });
@@ -124,9 +94,23 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
         $routes->get('/siswa/wali-kelas/(:any)', 'Backend\KelasController::kelasSiswa/$1');
         $routes->put('/kelas-siswa-delete/(:any)', 'Backend\KelasController::deleteKelasSiswa/$1');
 
-        // Detail mata pelajaran
-        $routes->get('mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
     });
+    // Detail mata pelajaran
+    $routes->get('mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
+    
+    // CRUD Nilai Mapel Siswa
+
+    $routes->group('nilai-mapel-siswa', function ($routes) {
+        $routes->post('(:any)', 'Backend\MapelController::insertNilaiMapelSiswa/$1');
+        $routes->put('(:any)', 'Backend\MapelController::updateNilaiMapelSiswa/$1');
+    });
+    // CRUD Nilai Rata Rata
+    $routes->group('nilai-rata-rata', function ($routes) {
+        $routes->post('(:any)', 'Backend\MapelController::insertNilaiRataRata/$1');
+        $routes->put('(:any)', 'Backend\MapelController::updateNilaiRataRata/$1');
+    });
+
+    // Access Admin And Wali Kelas
 
     // Read and Detail Mapel by Guru
     $routes->get('/mapel/(:any)', 'Backend\MapelController::mapelByGuru/$1');
@@ -148,16 +132,17 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/laporan-data-nilai-siswa/(:any)', 'Backend\LaporanController::laporanDataNilaiSiswa/$1');
 });
 
-// // RestFull API
-// // Back-end
-// $routes->group('', ['filter' => 'admin'], function ($routes) {
-//     $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
-//     $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
-//     $routes->post('/api/auth', 'Api\Authentication::login');
-// });
+// Rest Full API
+// Back-end
+$routes->group('', ['filter' => 'admin'], function ($routes) {
+    $routes->get('/api/search/siswa', 'Api\SiswaController::searchSiswa');
+    $routes->put('/api/update/siswa/(:any)', 'Api\SiswaController::updateSiswa/$1');
+    $routes->post('/api/auth', 'Api\Authentication::login');
+});
 
 
 // Rest Full API
+// Front-end
 $routes->group('api', function ($routes) {
     $routes->post('login', 'Api\Authentication::login');
     $routes->group('', ['filter' => 'auth'], function ($routes) {
