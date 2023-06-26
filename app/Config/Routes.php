@@ -49,6 +49,9 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     // Access Admin
     $routes->group('', ['filter' => 'role-admin'], function ($routes) {
 
+        // Profile Sekolah
+        $routes->get('/profile-sekolah', 'Backend\DashboardController::profileSekolah');
+
         $routes->put('/profile-admin', 'Backend\DashboardController::profileAdmin');
 
         // CRUD Data Guru

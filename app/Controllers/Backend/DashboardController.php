@@ -3,11 +3,11 @@
 namespace App\Controllers\Backend;
 
 use App\Controllers\BaseController;
-use App\Models\{Guru, Kelas, Mapel, Semester, Siswa, User};
+use App\Models\{Guru, Kelas, Mapel, ProfileSekolah, Semester, Siswa, User};
 
 class DashboardController extends BaseController
 {
-    public $guru, $admin, $siswa, $semester, $kelas, $mapel;
+    public $guru, $admin, $siswa, $semester, $kelas, $mapel, $sekolah;
 
     public function __construct()
     {
@@ -17,6 +17,7 @@ class DashboardController extends BaseController
         $this->semester = new Semester();
         $this->kelas = new Kelas();
         $this->mapel = new Mapel();
+        $this->sekolah = new ProfileSekolah();
     }
 
     public function index()
@@ -128,5 +129,17 @@ class DashboardController extends BaseController
         }
 
         return redirect()->to('/profile')->with('success', 'User telah diubah!');
+    }
+
+    public function profileSekolah()
+    {
+        return view('backend/pages/profile/sekolah/index', [
+            'sekolah' => $this->sekolah->where('id', 1)->first()
+        ]);
+    }
+
+    public function updateProfileSekolah($id)
+    {
+        
     }
 }
