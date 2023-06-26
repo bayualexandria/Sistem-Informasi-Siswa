@@ -44,7 +44,7 @@
             <div class="flex flex-col w-full p-5 bg-white rounded-lg shadow-md gap-y-3">
                 <div class="flex flex-row items-center justify-between">
                     <h6 class="pb-5 text-base font-bold text-slate-500">Data Siswa/Siswi</h6>
-                    <form action="<?= base_url('/kelas/siswa/' . $kelas->id); ?>" method="get" class="block">
+                    <form action="<?= base_url('/siswa/wali-kelas/' . $kelas->id); ?>" method="get" class="block">
                         <div class="relative">
                             <input type="text" name="search" id="search" class="py-1.5 rounded-full shadow-md outline-none border-slate-300 px-4 border text-slate-500 text-sm font-bold" value="<?= $keyword; ?>">
                             <div class="absolute top-1.5 right-3 bg-white">

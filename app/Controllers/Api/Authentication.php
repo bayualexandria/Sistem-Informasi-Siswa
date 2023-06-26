@@ -29,11 +29,11 @@ class Authentication extends ResourceController
 
         $rules = [
             'username' => [
-                'rules' => 'required|numeric|max_length[10]',
+                'rules' => 'required|numeric|max_length[20]',
                 'errors' => [
                     'required' => 'No. Induk Siswa harus diisi',
                     'numeric' => 'Yang anda masukan bukan No. Induk',
-                    'max_length' => 'No. Induk yang anda masukan melebihi 10 karakter'
+                    'max_length' => 'No. Induk yang anda masukan melebihi 20 karakter'
                 ]
             ],
             'password' => [
@@ -81,6 +81,7 @@ class Authentication extends ResourceController
             'nama' => $siswa['nama'],
             'no_hp' => $siswa['no_hp'],
             'alamat' => $siswa['alamat'],
+            'id_kelas'=>$siswa['kelas_id'],
             'kelas' => $kelas['kelas'] . '|' . $jurusan['jurusan']
         ], 'token' => $token, 'message' => 'Login berhasil'];
         return $this->respondCreated($response);

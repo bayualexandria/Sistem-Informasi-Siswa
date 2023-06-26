@@ -10,6 +10,7 @@ import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import Mapel from "./pages/mapel/Mapel";
 import Profile from "./pages/profile/Profile";
+import PDFFile from "./pages/doc/PDFFile";
 
 export default function App() {
   return (
@@ -46,6 +47,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <Mapel />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/doc"
+          element={
+            <PrivateRoute>
+              <PDFFile />
             </PrivateRoute>
           }
         />

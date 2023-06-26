@@ -107,7 +107,7 @@ class Mapel extends Model
         return $this->db->table('mapel')
             ->select('DISTINCT(mapel.hari),mapel.*,guru.nama')
             ->join('guru', 'guru.id=mapel.guru_id')
-            ->where('mapel.kelas_id', $kelas)
-            ->orderBy('hari', 'ASC')->get()->getResultObject();
+            ->where('kelas_id', $kelas)
+            ->orderBy('hari', 'ASC')->orderBy('waktu','ASC')->get()->getResultObject();
     }
 }

@@ -76,4 +76,11 @@ class Kelas extends Model
         return $this->table('siswa')->select('siswa.nama')->like('nama', $keyword)->orderBy('nama', 'ASC');
     }
 
+    public function apiKelas($id)
+    {
+        return $this->table('kelas')
+            ->select('kelas.kelas,jurusan.jurusan,guru.nama as wali_kelas')
+            ->join('jurusan', 'jurusan.id=kelas.id_jurusan')
+            ->join('guru', 'guru.id=kelas.id_guru')->where('kelas.id', $id)->get()->getResultObject();
+    }
 }

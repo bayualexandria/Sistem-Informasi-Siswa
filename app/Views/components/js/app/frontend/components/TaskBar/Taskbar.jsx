@@ -24,6 +24,7 @@ function Taskbar() {
         return (location.href = "/");
       }
       console.log(response);
+      Cookies.set("kelas", response.kelas_id);
       setSiswa(response);
     } catch (error) {}
   };

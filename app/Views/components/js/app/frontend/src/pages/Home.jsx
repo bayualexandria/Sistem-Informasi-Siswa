@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Taskbar from "../../components/TaskBar/Taskbar";
 import Watermark from "../../components/Watermark";
 

@@ -93,11 +93,10 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
         // Detail data Kelas
         $routes->get('/siswa/wali-kelas/(:any)', 'Backend\KelasController::kelasSiswa/$1');
         $routes->put('/kelas-siswa-delete/(:any)', 'Backend\KelasController::deleteKelasSiswa/$1');
-
     });
     // Detail mata pelajaran
     $routes->get('mata-pelajaran/detail/(:any)', 'Backend\MapelController::detail/$1');
-    
+
     // CRUD Nilai Mapel Siswa
 
     $routes->group('nilai-mapel-siswa', function ($routes) {
@@ -143,6 +142,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
 // Rest Full API
 // Front-end
+$routes->get('/', 'HomeController::index');
 $routes->group('api', function ($routes) {
     $routes->post('login', 'Api\Authentication::login');
     $routes->group('', ['filter' => 'auth'], function ($routes) {
@@ -153,6 +153,9 @@ $routes->group('api', function ($routes) {
 
         // Mapel
         $routes->get('mapel/(:any)', 'Api\MapelController::index/$1');
+
+        // Kelas
+        $routes->get('kelas/(:any)', 'Api\KelasController::index/$1');
     });
 });
 /*
