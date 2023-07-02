@@ -51,6 +51,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
         // Profile Sekolah
         $routes->get('/profile-sekolah', 'Backend\DashboardController::profileSekolah');
+        $routes->put('/profile-sekolah/(:any)', 'Backend\DashboardController::updateProfileSekolah/$1');
 
         $routes->put('/profile-admin', 'Backend\DashboardController::profileAdmin');
 

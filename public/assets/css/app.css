@@ -583,6 +583,9 @@ video {
 .top-2 {
   top: 0.5rem;
 }
+.top-3 {
+  top: 0.75rem;
+}
 .top-\[70px\] {
   top: 70px;
 }
@@ -606,6 +609,9 @@ video {
 }
 .m-0 {
   margin: 0px;
+}
+.m-5 {
+  margin: 1.25rem;
 }
 .m-auto {
   margin: auto;

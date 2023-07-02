@@ -134,12 +134,80 @@ class DashboardController extends BaseController
     public function profileSekolah()
     {
         return view('backend/pages/profile/sekolah/index', [
-            'sekolah' => $this->sekolah->where('id', 1)->first()
+            'sekolah' => $this->sekolah->where('id', 1)->asObject()->first(),
+            'validation' => $this->validation
         ]);
     }
 
     public function updateProfileSekolah($id)
     {
-        
+        $rules = [
+            'nama_sekolah' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Sekolah harus diisi',
+                ]
+            ],
+            'no_telp' => [
+                'rules' => 'required|max_length[15]|',
+                'errors' => [
+                    'required' => 'No. Handphone harus diisi',
+                    'max_length' => 'No. Handphone yang anda masukan melebihi 15 karakter',
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Alamat harus diisi',
+                ]
+            ],
+            'logo' => [
+                'rules' => 'is_image[logo]|max_size[logo,2048]',
+                'errors' => [
+                    'is_image' => 'Yang anda masukan bukan gambar',
+                    'max_size' => 'File yang anda masukan melebihi 2MB'
+                ]
+            ],
+            'kepala_sekolah' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Kepala Sekolah harus diisi',
+                ]
+            ]
+        ];
+        if (!$this->validate($rules)) {
+            return redirect()->to('/profile-sekolah')->withInput();
+        }
+        $sekolah = $this->sekolah->where('id', $id)->first();
+        $fileImage = $this->request->getFile('logo');
+
+        // cek gambar,apakah tetap gambar lama
+        if ($fileImage->getError() == 4) {
+            $image = $sekolah['logo'];
+        } else {
+            // generate nama file random
+            $namaImage = $fileImage->getRandomName();
+            // pindahkan gambar
+            delete_files('assets/img/profile/sekolah/');
+            $fileImage->move('assets/img/profile/sekolah/' . $namaImage);
+            $image = $namaImage;
+            // hapus file yang lama
+            if ($sekolah['logo'] != 'logo_pendidikan.png') {
+                unlink('assets/img/profile/sekolah/' . $sekolah['logo']);
+            }
+        }
+        $data = [
+            'nama_sekolah' => htmlspecialchars(
+                $this->request->getVar('nama_sekolah')
+            ),
+            'no_telp' => htmlspecialchars($this->request->getVar('no_telp')),
+            'kepala_sekolah' => htmlspecialchars(
+                $this->request->getVar('kepala_sekolah')
+            ),
+            'image_profile' => $image,
+            'alamat' => htmlspecialchars($this->request->getVar('alamat'))
+        ];
+        $this->sekolah->update($sekolah['id'], $data);
+        return redirect()->to('/profile-sekolah')->with('success', 'Data sekolah berhasil di update');
     }
 }
