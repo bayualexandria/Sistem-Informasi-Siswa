@@ -2,8 +2,8 @@
 
 namespace App\Controllers\Api;
 
-use App\Models\{Kelas, Siswa};
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\{Kelas, Siswa};
 
 class KelasController extends ResourceController
 {

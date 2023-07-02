@@ -160,6 +160,9 @@ $routes->group('api', function ($routes) {
 
         // Kelas
         $routes->get('kelas/(:any)', 'Api\KelasController::index/$1');
+
+        // Profile Sekolah
+        $routes->get('profile-sekolah/(:any)', 'Api\DashboardController::sekolah/$1');
     });
 });
 /*
