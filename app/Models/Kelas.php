@@ -79,7 +79,7 @@ class Kelas extends Model
     public function apiKelas($id)
     {
         return $this->table('kelas')
-            ->select('kelas.kelas,jurusan.jurusan,guru.nama as wali_kelas')
+            ->select('kelas.kelas,jurusan.jurusan,guru.nama as wali_kelas,guru.nip as nip')
             ->join('jurusan', 'jurusan.id=kelas.id_jurusan')
             ->join('guru', 'guru.id=kelas.id_guru')->where('kelas.id', $id)->get()->getResultObject();
     }

@@ -150,6 +150,7 @@ function PDFFile() {
   const [bulan, setBulan] = useState();
   const [tahun, setTahun] = useState();
   const [mapel, setMapel] = useState([]);
+  const [sekolah, setSekolah] = useState([]);
   // const [filter, setFilter] = useState(mapel);
   const [hari, setHari] = useState();
   const [siswa, setSiswa] = useState([]);
@@ -229,10 +230,28 @@ function PDFFile() {
     return obj.hari === "Jumat";
   });
 
+  // Profile Sekolah
+  const dataSekolah = async () => {
+    try {
+      let response = await fetch(`/api/profile-sekolah/1`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "4lex@ndr!413 " + auth[0],
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => res.data);
+      console.log("sekolah", response);
+      setSekolah(response);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getKelas();
     getMapel();
     getUserData();
+    dataSekolah();
     // filterDataMapel();
     // mapelHari();
     setTanggal(new Date().getDate());
@@ -266,9 +285,9 @@ function PDFFile() {
             />
             <div style={styles.textHeader}>
               <Text style={styles.textHeadeTitle}>Jadwal Mata Pelajaran</Text>
-              <Text style={styles.textHeadeTitle}>SMK XXXX XXXXXX XXXX</Text>
+              <Text style={styles.textHeadeTitle}>{sekolah.nama_sekolah}</Text>
               <Text style={styles.textHeaderAddress}>
-                Jl. xxxx xxxxxxxxx xxxx xxxxxx. Telp. 0981 27246
+                {sekolah.alamat} Telp. {sekolah.no_telp}
               </Text>
             </div>
             <Text style={styles.hidden}>Hello</Text>
@@ -495,6 +514,16 @@ function PDFFile() {
               </div>
             </div>
           )}
+          <View style={styles.m5}>
+            <View style={styles.center}>
+              <Text style={styles.textName}>Wali Kelas</Text>
+            </View>
+            <View style={styles.center}>
+              <Text style={styles.textName}>
+                {siswa.jenis_kelamin == "Perempuan" ? "Siswi" : "Siswa"}
+              </Text>
+            </View>
+          </View>
 
           <View style={styles.m5}>
             <View style={styles.center}>
@@ -502,7 +531,7 @@ function PDFFile() {
               <div style={styles.borderNameHorizontal}>
                 <hr />
               </div>
-              <Text style={styles.textName}>Wali Kelas</Text>
+              <Text style={styles.textName}>{kelas.nip}</Text>
             </View>
             <View style={styles.center}>
               <Text style={styles.textName}>{siswa.nama}</Text>
@@ -510,7 +539,7 @@ function PDFFile() {
                 <hr />
               </div>
               <Text style={styles.textName}>
-                {siswa.jenis_kelamin == "Perempuan" ? "Siswi" : "Siswa"}
+                {siswa.no_induk}
               </Text>
             </View>
           </View>
