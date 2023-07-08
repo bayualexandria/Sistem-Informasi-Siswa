@@ -60,14 +60,25 @@
 
                                 </div>
                             </div>
-                            <div class="flex flex-col w-full md:w-full gap-y-2">
-                                <label for="kepala_sekolah" class="text-base font-normal text-slate-600">Nama Kepala Sekolah</label>
-                                <input type="text" id="kepala_sekolah" class="w-full px-3 py-1 text-black border rounded-md bg-slate-100 focus:outline-none focus:ring-1  placeholder:text-sm placeholder:font-bold" name="kepala_sekolah" value="<?= old('nama_mapel') ?? $sekolah->kepala_sekolah; ?>" placeholder="Ali Hasan, S.Pd M.Pd" />
-                                <span class="flex">
-                                    <p class="pt-2 font-sans text-xs text-red-500">
-                                        <?= $validation->getError('kepala_sekolah') ?>
-                                    </p>
-                                </span>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col w-full md:w-1/2 gap-y-2">
+                                    <label for="kepala_sekolah" class="text-base font-normal text-slate-600">Nama Kepala Sekolah</label>
+                                    <input type="text" id="kepala_sekolah" class="w-full px-3 py-1 text-black border rounded-md bg-slate-100 focus:outline-none focus:ring-1  placeholder:text-sm placeholder:font-bold" name="kepala_sekolah" value="<?= old('nama_mapel') ?? $sekolah->kepala_sekolah; ?>" placeholder="Ali Hasan, S.Pd M.Pd" />
+                                    <span class="flex">
+                                        <p class="pt-2 font-sans text-xs text-red-500">
+                                            <?= $validation->getError('kepala_sekolah') ?>
+                                        </p>
+                                    </span>
+                                </div>
+                                <div class="flex flex-col w-full md:w-1/2 gap-y-2">
+                                    <label for="nip_kepsek" class="text-base font-normal text-slate-600">NIP Kepala Sekolah</label>
+                                    <input type="text" id="nip_kepsek" class="w-full px-3 py-1 text-black border rounded-md bg-slate-100 focus:outline-none focus:ring-1  placeholder:text-sm placeholder:font-bold" name="nip_kepsek" value="<?= old('nip_kepsek') ?? $sekolah->nip_kepsek; ?>" placeholder="92831032329909" />
+                                    <span class="flex">
+                                        <p class="pt-2 font-sans text-xs text-red-500">
+                                            <?= $validation->getError('nip_kepsek') ?>
+                                        </p>
+                                    </span>
+                                </div>
                             </div>
                             <div class="flex flex-col w-full gap-y-2">
                                 <label for="nama" class="text-base font-normal text-slate-600">Alamat</label>

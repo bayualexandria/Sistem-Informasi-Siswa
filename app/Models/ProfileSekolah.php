@@ -14,7 +14,7 @@ class ProfileSekolah extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_sekolah', 'alamat', 'no_telp', 'kepala_sekolah'];
+    protected $allowedFields    = ['nama_sekolah', 'alamat', 'no_telp', 'kepala_sekolah', 'nip_kepsek'];
 
     // Dates
     protected $useTimestamps = true;

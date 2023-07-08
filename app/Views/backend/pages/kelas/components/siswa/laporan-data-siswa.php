@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa/Siswi Kelas <?= $kelas['kelas'];?> <?= $jurusan['jurusan'];?></title>
-    <link rel="shortcut icon" href="https://seeklogo.com/images/D/Departemen_Pendidikan_Nasional-logo-E2BD667284-seeklogo.com.png" alt="logo"  type="image/x-icon">
+    <title>Data Siswa/Siswi Kelas <?= $kelas['kelas']; ?> <?= $jurusan['jurusan']; ?></title>
+    <link rel="shortcut icon" href="https://seeklogo.com/images/D/Departemen_Pendidikan_Nasional-logo-E2BD667284-seeklogo.com.png" alt="logo" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -46,17 +46,22 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 1rem;
-            padding: 0 50px;
+            padding: 0 20px;
             text-align: center;
         }
 
         .ttd1 {
-            width: 35%;
+            width: 40%;
             float: left;
         }
 
+        .gap-ttd {
+            width: 10;
+
+        }
+
         .ttd2 {
-            width: 35%;
+            width: 40%;
             float: right;
 
         }
@@ -85,8 +90,8 @@
         </div>
         <div class="title-head">
             <h4>Daftar Murid Kelas <?= $kelas['kelas']; ?> <?= $jurusan['jurusan']; ?></h4>
-            <h4>SMK XXXX XXXXXX XXXX</h4>
-            <h6>Jl. xxxx xxxxxxxxx xxxx xxxxxx. Telp. 0981 27246</h6>
+            <h4><?= $sekolah->nama_sekolah; ?></h4>
+            <h6><?= $sekolah->alamat; ?> Telp. <?= $sekolah->no_telp; ?></h6>
         </div>
     </div>
     <hr class="line">
@@ -121,17 +126,18 @@
         </tbody>
     </table>
     <div style="text-align: right;margin-top:20px;margin-right:50px;">
-        <p>Biak, <?= Date('d M Y');?></p>
+        <p>Biak, <?= Date('d M Y'); ?></p>
     </div>
     <div class="ttd">
         <div class="ttd1">
             <div class="title-ttd">
                 <h5>Kepala Sekolah</h5>
             </div>
-            <p>xxxxx xxxxx xxxx</p>
+            <p><?= $sekolah->kepala_sekolah; ?></p>
             <hr class="line-ttd">
-            <p class="nip">xxxxx xxx xxxx</p>
+            <p class="nip"><?= $sekolah->nip_kepsek; ?></p>
         </div>
+        <div class="gap-ttd"></div>
         <div class="ttd2">
             <div class="title-ttd">
                 <h5>Wali Kelas</h5>

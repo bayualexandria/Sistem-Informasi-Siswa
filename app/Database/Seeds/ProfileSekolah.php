@@ -15,6 +15,7 @@ class ProfileSekolah extends Seeder
             'no_telp' => "0981-19866",
             'logo' => 'logo-pendidikan.png',
             'kepala_sekolah' => "Alimuddin Ismael Khoirul, S.Pd, M.Pd",
+            'nip_kepsek' => 'XXXXXXXXXXXXXXX',
             'created_at' => Time::now(),
             'updated_at' => Time::now()
         ];

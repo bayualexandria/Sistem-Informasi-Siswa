@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Mata Pelajaran <?= $kelas['kelas']; ?> <?= $jurusan['jurusan']; ?></title>
-    <link rel="shortcut icon" href="https://seeklogo.com/images/D/Departemen_Pendidikan_Nasional-logo-E2BD667284-seeklogo.com.png" alt="logo"  type="image/x-icon">
+    <link rel="shortcut icon" href="https://seeklogo.com/images/D/Departemen_Pendidikan_Nasional-logo-E2BD667284-seeklogo.com.png" alt="logo" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -86,8 +86,8 @@
         </div>
         <div class="title-head">
             <h4>Jadwal Mata Pelajaran</h4>
-            <h4>SMK XXXX XXXXXX XXXX</h4>
-            <h6>Jl. xxxx xxxxxxxxx xxxx xxxxxx. Telp. 0981 27246</h6>
+            <h4><?= $sekolah->nama_sekolah;?></h4>
+            <h6><?= $sekolah->alamat;?> Telp. <?= $sekolah->no_telp;?></h6>
         </div>
     </div>
     <hr class="line">

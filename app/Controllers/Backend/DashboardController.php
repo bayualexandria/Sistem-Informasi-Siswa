@@ -173,6 +173,11 @@ class DashboardController extends BaseController
                 'errors' => [
                     'required' => 'Nama Kepala Sekolah harus diisi',
                 ]
+            ], 'kepala_sekolah' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Kepala Sekolah harus diisi',
+                ]
             ]
         ];
         if (!$this->validate($rules)) {
@@ -204,6 +209,7 @@ class DashboardController extends BaseController
             'kepala_sekolah' => htmlspecialchars(
                 $this->request->getVar('kepala_sekolah')
             ),
+            'nip_kepsek' => htmlspecialchars($this->request->getVar('nip_kepsek')),
             'image_profile' => $image,
             'alamat' => htmlspecialchars($this->request->getVar('alamat'))
         ];
